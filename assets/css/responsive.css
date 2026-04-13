@@ -1,0 +1,2085 @@
+
+/* Normal desktop :1401x. */
+@media (min-width: 1400px) and (max-width: 1600px){
+.hero-social-icon {
+    left: 5px;
+}
+.about-counter-shape {
+    left: -15%;
+}
+
+
+}
+
+/* Normal desktop :1300px. */
+@media (min-width: 1300px) and (max-width: 1399px) {
+  
+/*hero-section*/
+.hero-area {
+    height: 1000px;
+}
+
+.hero-main-imgs img {
+    margin-left: 124px;
+    margin-top: 178px;
+}
+.hero-content h1 {
+    font-size: 50px;
+    line-height: 60px;
+}
+
+.hero-social-icon {
+    left: 2%;
+}
+
+.hero-single-imgs1 {
+    right: -50%;
+    top: 45%;
+}
+/*about-section*/
+
+.about-thumb {
+    margin-left: 0;
+    margin-right: 50px;
+}
+.about-thumb img {
+    width: 100%;
+}
+/*appointment-section*/
+.appointment-shape1 {
+    top: 5%;
+    right: -8%;
+
+}
+/*team-section*/
+.single-team-box:hover .team-social-icon {
+    left: 24%;
+}
+
+.section-title h1 {
+    font-size: 34px;
+}
+/*about-inner*/
+.about-area.inner-pages .about-thumb {
+    margin-left: 0;
+    margin-right: 0;
+}
+/*appointment-section-tow*/
+.appointment-area-tow {
+    padding: 107px 0 72px;
+}
+/*skaill-section*/
+.skill-bar-area {
+    padding: 107px 0 96px;
+}
+.skill {
+    margin-bottom: 31px;
+}
+/*--blog-details--*/
+.blog-details-content h2 {
+    font-size: 28px;
+    line-height: 41px;
+}
+/*service-details*/
+.service-details-content p {
+    font-size: 15px;
+    line-height: 25px;
+}
+/*contact-section*/
+.contact-content h4 {
+    font-size: 20px;
+}
+
+
+.faqs-content h4 {
+    font-size: 20px;
+}
+
+.accordion h3 {
+    text-indent: 10px;
+}
+
+.accordion li p {
+    font-size: 15px;
+    margin-left: 0;
+}
+
+.accordion h3::after {
+    right: 15px;
+    top: 32px;
+}
+
+
+}
+
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1299px) {
+  
+    .landing .header-menu ul li {
+        padding-right: 28px;
+    }
+
+/*hero-section*/
+.hero-area {
+    height: 905px;
+}
+.hero-main-imgs img {
+    margin-left: 91px;
+    margin-top: 100px;
+}
+.hero-content h1 {
+    font-size: 46px;
+    line-height: 54px;
+}
+
+.hero-social-icon {
+    left: 1%;
+    top: 76%;
+}
+.hero-social-icon ul li {
+    display: inline-block;
+}
+
+/*appointment-section*/
+.appointment-thumb img {
+    width: 100%;
+    margin-left: 60px;
+}
+
+.section-title h1 {
+    font-size: 35px;
+}
+
+.section-title p {
+    width: 100%;
+}
+/*subcribe-section*/
+.subscribe-imgs-shape1 {
+    left: 8%;
+}
+
+/*footer-section*/
+.footer-shape-2 {
+    left: 78%;
+}
+.footer-shape-3 {
+    left: 0%;
+}
+
+/*about-inner*/
+.about-area.inner-pages .about-thumb {
+    margin-right: 0;
+}
+
+/*--blog-details--*/
+.blog-details-content h2 {
+    font-size: 28px;
+    line-height: 40px;
+}
+
+/*faqs-section*/
+.accordion h3 {
+    font-size: 15px;
+}
+.accordion li p {
+    font-size: 15px;
+    width: 88%;
+}
+/*about-section*/
+.about-thumb {
+    position: relative;
+    margin-left: 0;
+    margin-right: 55px;
+}
+.about-thumb img {
+    width: 100%;
+}
+.about-counter-shape {
+    top: 51%;
+    left: -12%;
+}
+
+/*--services-details--*/
+.service-details-main-title h1 {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+.service-details-overview-list ul li {
+    padding-top: 11px;
+}
+
+.service-details-content h2 {
+    font-size: 15px;
+    padding-bottom: 5px;
+    padding-top: 4px;
+}
+
+.service-details-content p {
+    font-size: 15px;
+    line-height: 24px;
+}
+/*appointement-section*/
+.appointment-area-tow {
+    padding: 107px 0 70px;
+}
+/*skill-section*/
+.skill-bar-area {
+    padding: 107px 0 97px;
+}
+.skill {
+    margin-bottom: 31px;
+}
+
+.single-products-box:hover .product-thumb-icon a:nth-child(1) {
+    left: 65px;
+}
+.single-products-box:hover .product-thumb-icon a:nth-child(2) {
+    right: 65px;
+}
+
+/* Shop Details Inner Page */
+.tabs_item img {
+    width: 100%;
+}
+
+}
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+/*header-section*/
+.header-menu {
+	text-align: left;
+}
+
+.landing .header-menu ul li {
+    padding-right: 16px;
+}
+
+.header-button a {
+    padding: 10px 22px;
+    font-size: 15px;
+}
+
+
+/*hero-section--*/
+.hero-area {
+    height: 794px;
+}
+
+.hero-main-imgs img {
+    margin-left: 83px;
+    margin-top: 105px;
+}
+.hero-content h1 {
+    font-size: 40px;
+    line-height: 45px;
+}
+.hero-single-imgs1 {
+    right: -67%;
+    top: 44%;
+}
+.hero-social-icon ul li {
+    display: inline-block;
+}
+
+.hero-social-icon {
+    left: 4%;
+    top: 81%;
+    display: inline-block;
+}
+.hero-social-icon ul::before {
+    background: transparent;
+}
+.hero-social-icon ul::after {
+    background: transparent;
+}
+
+/*about-section*/
+.about-thumb {
+    margin-left: -39px;
+    margin-right: 48px;
+}
+.about-thumb img {
+    width: 100%;
+}
+.about-counter-shape {
+    left: 0;
+}
+.section-title h1 {
+    font-size: 26px;
+}
+/*appointment-section*/
+.appointment-area {
+    padding: 118px 0 110px;
+}
+.appointment-thumb img {
+    width: 100%;
+    margin-left: 15px;
+}
+.appointment-shape2 {
+    bottom: -1%;
+}
+
+.circle-chart__info {
+    animation: none;
+    opacity: 1;
+}
+
+
+/*services-section*/
+.single-service-box {
+    padding: 44px 20px 35px;
+}
+
+.single-team-box:hover .team-social-icon {
+    left: 20%;
+}
+
+.team-inner-section {
+    padding: 90px 0 50px;
+}
+
+/*subscribe-section*/
+.subscribe-area .section-title p {
+    width: 60%;
+}
+
+.subscribe-imgs-shape1 {
+    left: 4%;
+}
+.subscribe-imgs-shape2 {
+    right: -77%;
+}
+
+/*blog-section*/
+.blog-content h4.title a {
+    font-size: 17px;
+    line-height: 28px;
+}
+
+/*footer-section*/
+.footer-widget-desc p {
+    width: 100%;
+}
+.footer-widget-text-tow p {
+    width: 100%;
+}
+.footer-shape-3 {
+    left: 0%;
+}
+.footer-shape-2 {
+    left: 77%;
+}
+/*about-inner-section*/
+.about-area.inner-pages {
+    padding: 107px 0 118px;
+}
+.about-area.inner-pages .about-thumb {
+    margin-right: 0;
+}
+
+
+
+/*faqs-section*/
+.faqs-content h4 {
+    font-size: 16px;
+}
+.accordion li p {
+    font-size: 14px;
+    margin-left: 0px;
+    width: 95%;
+}
+
+.accordion li p {
+    font-size: 14px;
+    margin-left: 0px;
+}
+.accordion h3::after {
+    right: 14px;
+    top: 29px;
+}
+
+/*--blog-details--*/
+.blog-details-content h2 {
+    font-size: 28px;
+    line-height: 40px;
+}
+
+.recent-widget-thumb {
+    margin-right: 5px;
+}
+
+.sidber-widget-recent-post .recent-widget-content a {
+    font-size: 14px;
+    line-height: 14px;
+}
+.widget-categories-menu ul li a {
+    font-size: 13px;
+}
+
+/*-portfolio-section*/
+.poftolio-content h4 a {
+    font-size: 13px;
+}
+
+/*services-section*/
+.service-box {
+    padding: 33px 18px 25px;
+}
+
+/*--services-details-section--*/
+.service-details-main-title h1 {
+    font-size: 26px;
+    line-height: 40px;
+}
+
+.service-details-overview-title h2 {
+    font-size: 26px;
+    line-height: 40px;
+}
+
+.service-details-overview-list ul li {
+    padding-top: 9px;
+}
+
+.service-details-overview-list ul li::before {
+    top: 18px;;
+}
+
+.service-details-number {
+    right: 20px;
+}
+
+.service-details-content h2 {
+    font-size: 16px;
+    padding-top: 0px;
+    line-height: 26px;
+}
+
+/*appointemnt-section*/
+.appointment-area-tow {
+    padding: 107px 0 71px;
+}
+/*skill-bar-section*/
+.skill-bar-area {
+    padding: 107px 0 100px;
+}
+.skill {
+    margin-bottom: 17px;
+}
+
+.widget-check-box {
+    padding: 40px 15px 18px;
+}
+
+.range-wrapper-box {
+    padding: 40px 15px 40px;
+}
+.product-categories-box {
+    padding: 30px 8px 20px;
+}
+
+.row.products {
+    padding-left: 30px;
+}
+
+.product-content {
+    padding: 23px 0 20px;
+}
+
+/* Shop Details Inner Page */
+.shop-detials {
+    padding: 60px 0 40px;
+}
+
+.tabs_item img {
+    width: 100%;
+}
+
+
+}
+
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991px) {
+
+.header-area {
+    display: none;
+}
+/*hero-section*/
+.hero-area {
+    height: 1500px;
+    margin-top: 0;
+}
+.hero-content h1 {
+    font-size: 55px;
+    line-height: 70px;
+}
+.hero-content p {
+    width: 90%;
+}
+
+.hero-main-imgs img {
+    margin-left: 0;
+    margin-top: 85px;
+}
+
+.hero-single-imgs1 {
+    right: -22%;
+    top: 42%;
+}
+.hero-single-imgs3 {
+    left: 8px;
+    top: 36%;
+}
+.hero-single-imgs4 {
+    top: 75%;
+    right: 1%;
+}
+.hero-social-icon {
+    left: 88%;
+    top: 15%;
+}
+
+/*about-section*/
+.about-area {
+    padding: 120px 0 130px;
+}
+.about-thumb {
+    margin-left: 0;
+    margin-bottom: 80px;
+}
+.about-thumb img {
+    width: 100%;
+}
+.about-single-imgs {
+    top: 8%;
+    left: -10%;
+}
+.about-single-shape {
+    left: -4%;
+    bottom: -9%;
+}
+.about-counter-shape {
+    left: -10%;
+}
+/*appointement-section*/
+.appointment-area {
+    padding: 110px 0 64px;
+}
+.appointment-thumb {
+    position: relative;
+    margin-top: 60px;
+}
+.appointment-shape1 {
+    top: 8%;
+    right: 12%;
+}
+/*review-section*/
+.review-area {
+    background: #F8F8FF;
+    padding: 107px 0 74px;
+}
+.circle-chart {
+    margin-bottom: 50px;
+}
+.circle-chart__info {
+    animation: none;
+    opacity: 1;
+}
+.review-content h4 {
+    margin-top: -20px;
+    margin-bottom: 47px;
+}
+/*services-section*/
+.single-service-box {
+    padding: 44px 20px 35px;
+}
+
+/*team-section*/
+.team-area {
+    padding: 109px 0 74px;
+}
+.team-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 65px;
+}
+
+.single-team-box {
+    margin-bottom: 35px;
+}
+/*testi-section*/
+.owl-next {
+    right: 0;
+}
+.owl-prev {
+    left: 0;
+}
+.testi-content p {
+    font-size: 16px;
+    width: 85%;
+}
+/*subscribe-section*/
+.subscribe-area .section-title p {
+    width: 90%;
+}
+.subscribe-form input {
+    width: 80%;
+}
+/*blog-section*/
+.blog-area {
+    padding: 108px 0 101px;
+}
+.blog-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 60px;
+}
+.blog-content h4.title a {
+    font-size: 18px;
+    line-height: 30px;
+}
+/*footer-section*/
+.footer-single-shape {
+    left: 51%;
+    bottom: -24%;
+}
+
+.footer-shape-3 {
+    left: -1%;
+}
+.footer-widget-content {
+    margin-bottom: 60px;
+}
+
+/*--blog-details--*/
+.blog-detials-area {
+    padding: 120px 0 90px;
+}
+.blog-details-content h2 {
+    line-height: 44px;
+}
+
+/*portfolio-section*/
+.portfolio-area .section-title p {
+    width: 80%;
+}
+.portfolio_menu ul li {
+    margin-right: 0px;
+}
+
+/*--portfolio--details-section--*/
+.portfolio-details-thumb img {
+    margin-left: 0;
+    margin-bottom: 35px;
+}
+
+
+/*--services-details-section--*/
+.service-details-main-title h1 {
+    font-size: 30px;
+    line-height: 45px;
+}
+
+.service-details-overview-title h2 {
+    font-size: 28px;
+    line-height: 40px;
+}
+
+.service-details-overview-list ul li {
+    padding-top: 12px;
+}
+
+.service-details-overview-list ul li::before {
+    top: 20px;
+}
+/*pricing-section*/
+.pricing-area {
+    padding: 108px 0 92px;
+    background: #f6f6f6;
+}
+.pricing-content {
+    margin-bottom: 25px;
+}
+/*contact-section*/
+.contact-infor {
+    margin-bottom: 50px;
+}
+
+/*appointment-section*/
+.appointment-area-tow {
+    padding: 107px 0 70px;
+}
+.appointment-area-tow .section-title {
+    margin-bottom: 60px;
+}
+
+/*skill-bar-section*/
+.skill-bar-area {
+    padding: 107px 0 120px;
+}
+.skill-bar-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+ /* Team Details Inner Page */
+ .doctor-info-box {
+    margin-bottom: 30px;
+}
+
+/* Shop Details Inner Page */
+.shop-detials {
+    padding: 60px 0 40px;
+}
+
+.tabs_item img {
+    width: 100%;
+}
+
+.style-three.tab {
+    padding: 15px 17px 15px;
+    margin-right: 15px;
+}
+
+.style-three .tabs li a {
+    margin-right: 10px;
+}
+
+.shop-dtls-info {
+    padding-left: 0;
+}
+
+.category-button a {
+    padding: 12px 18px;
+    font-size: 12px;
+}
+
+table.tab-items-table tr td {
+    padding-right: 50px;
+}
+
+}
+
+/* Large Mobile :600px. */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+.header-area {
+    display: none;
+}
+
+/*--hero-section--*/
+.hero-area {
+    height: 1230px;
+    margin-top: 0;
+}
+.hero-content h1 {
+    font-size: 45px;
+    line-height: 54px;
+}
+.hero-social-icon {
+    left: 2%;
+}
+.hero-single-shape1 {
+    top: 22%;
+    left: 46%;
+}
+.hero-main-imgs img {
+    width: 95%;
+    margin-left: 0;
+    margin-top: 125px;
+}
+.hero-single-imgs2 {
+    left: -75px;
+}
+.hero-single-imgs3 {
+    left: -17px;
+    top: 38%;
+}
+.hero-single-imgs4 {
+    top: 75%;
+    right: 2%;
+}
+.hero-single-imgs1 {
+    right: -33%;
+    top: 48%;
+}
+/*about-section*/
+.about-area {
+    padding: 120px 0 135px;
+}
+.about-thumb img {
+    width: 100%;
+}
+.about-counter-shape {
+    left: -1%;
+}
+.about-single-imgs {
+    top: 3%;
+    left: -22%;
+}
+.about-area .section-title.tow {
+    margin-top: 105px;
+}
+/*appointment-section*/
+.appointment-area {
+    padding: 109px 0 73px;
+}
+.appointment-thumb img {
+    width: 100%;
+    margin-top: 65px;
+}
+.appointment-shape1 {
+    top: 9%;
+    right: 0%;
+}
+/*review-section*/
+.review-area {
+    padding: 107px 0 80px;
+}
+.circle-chart__info {
+    animation: none;
+    opacity: 1;
+}
+
+.review-content h4 {
+    margin-top: 24px;
+    margin-bottom: 36px;
+}
+
+/*services-section*/
+.single-service-box {
+    padding: 44px 56px 35px;
+}
+.team-area .Dreamhub-button {
+    text-align: left;
+}
+.team-thumb img {
+    margin-top: 65px;
+}
+.single-team-box:hover .team-social-icon {
+    left: 38%;
+}
+/*testi-section*/
+.testi-content p {
+    font-size: 17px;
+    width: 93%;
+}
+.testi-area .section-title h1 {
+    font-size: 22px;
+}
+.owl-next {
+    right: -30px;
+}
+.owl-prev {
+    left: -29px;
+}
+/*subscribe-section*/
+.subscribe-area .section-title h1 {
+    font-size: 24px;
+}
+.subscribe-form input {
+    width: 95%;
+}
+.subscribe-area .section-title p {
+    width: 100%;
+}
+.subscribe-imgs-shape1 {
+    left: -1%;
+}
+.subscribe-imgs-shape2 {
+    right: -63%;
+}
+/*blog-section*/
+.blog-area .section-title h1 {
+    font-size: 26px;
+}
+.blog-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+/*footer-section*/
+.footer-area {
+    padding: 119px 0 33px;
+}
+.footer-widget-content {
+    margin-top: 50px;
+}
+.footer-widget-text-tow p {
+    width: 70%;
+}
+.footer-single-shape {
+    left: 21%;
+}
+
+.footer-widget-desc p {
+    width: 68%;
+}
+.footer-shape-2 {
+    left: 58%;
+    top: 5%;
+}
+.footer-shape-3 {
+    bottom: 1%;
+    left: 1%;
+}
+
+/*about-inner-section*/
+.about-area.inner-pages .about-imgs-4 {
+    margin-bottom: 35px;
+}
+.about-area.inner-pages .about-imgs-1 {
+    margin-top: 27px;
+}
+.about-area.inner-pages .about-imgs-3 {
+    margin-top: 30px;
+}
+/*counter-section*/
+.counter-box {
+    margin-bottom: 50px;
+}
+
+/*breadcumb-section*/
+.bradcumb-area {
+    text-align: center;
+}
+.bradcumb-content h1 {
+    font-size: 48px;
+}
+/*faqs-section*/
+.accordion li p {
+    width: 95%;
+}
+
+/*portfolio-section*/
+.portfolio-area .section-title p {
+    width: 100%;
+}
+.portfolio_menu ul li {
+    margin-bottom: 20px;
+}
+/*--blog-details-section--*/
+.blog-detials-area {
+    padding: 120px 0 88px;
+}
+.blog-details-content h2 {
+    line-height: 40px;
+}
+
+/*--porfolio-details-section--*/
+.row.box-shadow {
+    padding: 40px 48px 39px;
+}
+.portfolio-details-thumb img {
+    margin-left: 0;
+    margin-bottom: 28px;
+}
+
+
+/*--services-details-section--*/
+
+.service-details-main-title h1 {
+    font-size: 36px;
+    line-height: 45px;
+}
+
+.service-details-overview-title h2 {
+    font-size: 30px;
+    line-height: 45px;
+}
+
+.service-details-overview-list ul li {
+    padding-top: 17px;
+}
+
+.service-details-overview-list ul li::before {
+    top: 25px;
+}
+/*pricing-section*/
+.pricing-area {
+    padding: 108px 0 97px;
+    background: #f6f6f6;
+}
+.pricing-content {
+    margin-bottom: 24px;
+}
+/*contact-section*/
+.contact-infor {
+    margin-bottom: 50px;
+}
+/*appointment-section*/
+.appointment-area-tow {
+    padding: 107px 0 70px;
+}
+.appointment-area-tow .section-title {
+    margin-bottom: 58px;
+}
+/*skill-bar-area*/
+.skill-bar-area {
+    padding: 107px 0 118px;
+}
+.skill-bar-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+/* Team Details Inner Page */
+ .appointment-section, .team-skill-section {
+    padding: 30px 0 50px;
+}
+
+ .doctor-info-box {
+    margin-bottom: 30px;
+}
+
+.doctor-info-details {
+    margin-left: 0;
+}
+
+.row.products {
+    padding-left: 0;
+}
+
+.tab {
+    margin-right: 0;
+}
+
+/* Shop Details Inner Page */
+.shop-detials {
+    padding: 60px 0 40px;
+}
+
+.tabs_item img {
+    width: 100%;
+}
+
+.style-three.tab {
+    padding: 15px 17px 15px;
+    margin-right: 15px;
+}
+
+.style-three .tabs li a {
+    margin-right: 10px;
+}
+
+.appoinment-tab .tab {
+    padding: 0;
+}
+
+.shop-dtls-info {
+    padding-left: 0;
+}
+
+.category-button a {
+    padding: 12px 18px;
+    font-size: 12px;
+}
+
+.product-details-respond .sidebar-description p {
+    font-size: 14px;
+}
+
+table.tab-items-table tr td {
+    padding-right: 35px;
+}
+
+}
+
+/* Large Mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width:599px) {  
+.header-area {
+    display: none;
+}
+
+/*hero-section*/
+.hero-area {
+    height: 600px;
+    margin-top: 0;
+}
+.hero-main-thumb {
+    display: none;
+}
+
+.hero-content h1 {
+    font-size: 44px;
+    line-height: 50px;
+}
+.hero-content p {
+    width: 84%;
+}
+.hero-social-icon {
+    left: 91%;
+    top: 36%;
+}
+.hero-single-shape1 {
+    top: 11%;
+    left: 40%;
+}
+.hero-single-shape2 {
+    left: 45%;
+    bottom: 25%;
+}
+.hero-single-shape3 {
+    bottom: 7%;
+}
+/*feature-section*/
+.feature-box {
+    padding: 39px 94px 32px;;
+}
+.section-title h1 {
+    font-size: 22px;
+}
+
+/*about-section*/
+.about-area {
+    padding: 120px 0 134px;
+}
+.about-thumb img {
+    width: 100%;
+}
+.about-counter-shape {
+    left: 2%;
+}
+.about-area .section-title.tow {
+    margin-top: 100px;
+}
+/*appointement-section*/
+.appointment-area {
+    padding: 106px 0 76px;
+}
+.appointment-thumb img {
+    width: 100%;
+    margin-top: 65px;
+}
+.appointment-shape1 {
+    top: 12%;
+    right: -1%;
+}
+.appointment-shape2 {
+    bottom: 0%;
+     left: -10%;
+}
+
+/*review-section*/
+.review-area {
+    padding: 107px 0 80px;
+}
+.circlechart {
+    margin-bottom: 60px;
+}
+.circle-chart__info {
+    animation: none;
+    transform: translateY(0.3em);
+    opacity: 1;
+}
+.review-content h4 {
+    margin-top: -37px;
+    margin-bottom: 36px;
+}
+/*team-section*/
+.team-area {
+    padding: 109px 0 80px;
+}
+.team-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 60px;
+}
+.single-team-box {
+    margin-bottom: 28px;
+}
+.single-team-box:hover .team-social-icon {
+    left: 34%;
+}
+
+/*testi-section*/
+.testi-content p {
+    font-size: 16px;
+    width: 100%;
+    line-height: 28px;
+    margin-top: 0;
+}
+.owl-prev {
+    display: none;
+}
+.owl-next {
+    display: none;
+}
+/*subscribe-section*/
+.subscribe-area .section-title p {
+    width: 88%;
+}
+.subscribe-form input {
+    width: 90%;
+    margin-right: -8px;
+}
+.subscribe-form button {
+    margin-left: -137px;
+}
+.subscribe-imgs-shape1 {
+    left: -2%;
+}
+.subscribe-imgs-shape2 {
+    right: -53%;
+}
+/*testi-section*/
+.blog-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 50px;
+}
+/*footer-section*/
+.footer-area {
+    padding: 119px 0 33px;
+}
+.footer-shape-2 {
+    left: 52%;
+    top: 4%;
+}
+.footer-single-shape {
+    left: 12%;
+}
+.footer-shape-3 {
+    bottom: 0%;
+    left: -1%;
+}
+.footer-widget-content {
+    margin-top: 50px;
+}
+.footer-widget-title h4 {
+    margin-bottom: 25px;
+}
+
+/*inner-about-section*/
+.about-imgs-4 {
+    margin-bottom: 30px;
+}
+
+.about-imgs-3 {
+    margin-top: 30px;
+}
+/*counter-section*/
+.counter-box {
+    margin-bottom: 30px;
+}
+
+
+/*bradcumb-section*/
+.bradcumb-area {
+    padding: 120px 0 120px;
+    text-align: center;
+}
+.bradcumb-content h1 {
+    font-size: 46px;
+}
+/*faqs-section*/
+.faqs-area {
+    padding: 92px 0 118px;
+}
+.faqs-content {
+    padding: 0px 18px 0;
+}
+.accordion h3::after {
+    top: 30px;
+}
+.accordion h3 {
+    font-size: 15px;
+    text-indent: 22px;
+}
+.accordion li p {
+    font-size: 14px;
+    width: 96%;
+    margin-left: 13px;
+}
+
+/*--blog-deatils--*/
+.blog-detials-area {
+    padding: 120px 0 87px;
+}
+.blog-detials-area.blog-list {
+    padding: 120px 0 90px;
+}
+.blog-detials-area.blog-tow-column {
+    padding: 120px 0 91px;
+}
+.blog-details-content h2 {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.blog-details-author-thumb {
+    float: inherit;
+    margin-right: 0;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.blog-details-author-content {
+    text-align: center;
+}
+
+.blog-details-comment.reply {
+    margin-left: 0;
+}
+
+.blog-details-contact {
+    margin: 0;
+}
+
+/*portfoli-section*/
+.portfolio-area .section-title p {
+    width: 100%;
+}
+.portfolio_menu ul li {
+    margin-bottom: 25px;
+}
+
+/*--porfolio-details-section--*/
+.row.box-shadow {
+    padding: 58px 30px 56px;
+}
+.portfolio-details-thumb img {
+    margin-left: 0;
+    margin-bottom: 28px;
+}
+
+/*--services-details-section--*/
+.service-details-main-title h1 {
+    font-size: 30px;
+    line-height: 42px;
+}
+
+.service-details-overview-title h2 {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+.service-details-overview-list ul li {
+    padding-top: 14px;
+}
+
+.service-details-overview-list ul li::before {
+    top: 21px;
+}
+
+/*pricing-section*/
+.pricing-area {
+    padding: 108px 0 84px;
+}
+.pricing-content {
+    margin-bottom: 35px;
+}
+/*contact-section*/
+.contact-area {
+    padding: 120px 0 120px;
+}
+.contact-infor {
+    margin-bottom: 45px;
+}
+/*appointment-section*/
+.appointment-area-tow {
+    padding: 107px 0 71px;
+}
+.appointment-area-tow .section-title {
+    margin-bottom: 50px;
+}
+
+/*skill-bar-section*/
+.skill-bar-area {
+    padding: 107px 0 120px;
+}
+
+.skill-bar-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.team-area {
+    padding: 60px 0 85px;
+}
+
+.team-inner-section {
+    padding: 60px 0 0;
+}
+
+.team-area .dreamhub-button {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.team-area .dreamhub-button {
+    text-align: left;
+}
+
+
+/* Team Details Inner Page */
+.appointment-section, .team-skill-section {
+    padding: 30px 0 50px;
+}
+
+ .doctor-info-box {
+    margin-bottom: 30px;
+}
+
+.doctor-info-details {
+    margin-left: 0;
+}
+
+.row.products {
+    padding-left: 0;
+}
+
+.upper.widget_search input {
+    width: 100%;
+}
+
+.form_box {
+    padding: 11px 0 30px;
+}
+
+.widget select {
+    display: none;
+}
+
+.single-products-box2 .products-thumb img {
+    width: 210px;
+}
+
+.single-products-box2 .product-title h2 {
+    font-size: 18px;
+    line-height: 8px;
+}
+
+.shops-section p.description {
+    font-size: 14px;
+}
+
+/* Shop Details Inner Page */
+.shop-detials {
+    padding: 60px 0 40px;
+}
+
+.tabs_item img {
+    width: 100%;
+}
+
+.tabs_item {
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.style-three.tab {
+    padding: 0;
+    margin-right: 0;
+    margin-bottom: 30px;
+}
+
+.style-three .tabs li a {
+    margin-right: 5px;
+}
+
+.appoinment-tab .tab {
+    padding: 0;
+}
+
+.shop-dtls-info {
+    padding-left: 0;
+}
+
+.category-button a {
+    padding: 12px 18px;
+    font-size: 12px;
+}
+
+.product-details-respond .sidebar-description p {
+    font-size: 14px;
+}
+
+table.tab-items-table tr td {
+    padding-right: 35px;
+}
+
+.appoinment-tab .tabs li a {
+    padding: 9px 20px;
+    margin-right: 20px;
+}
+
+.tabs_item {
+    padding: 0;
+}
+
+
+}
+
+/* small mobile :320px. */
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+.header-area {
+    display: none;
+}
+/*header-section*/
+.hero-area {
+    height: 620px;
+    margin-top: 0;
+}
+.hero-main-thumb {
+    display: none;
+}
+.hero-content h1 {
+    font-size: 22px;
+    line-height: 20px;
+}
+.hero-content p {
+    font-size: 14px;
+}
+.Dreamhub-button a.bg-none {
+    margin-top: 28px;
+}
+.hero-social-icon {
+    left: 82%;
+    top: 58%;
+}
+.hero-social-icon ul::before {
+    background: transparent;
+
+}
+.hero-social-icon ul::after {
+    background: transparent;
+
+}
+.hero-single-shape1 {
+    top: 5%;
+    left: 9%;
+}
+.hero-single-shape2 {
+    bottom: 23%;
+}
+.hero-single-shape3 {
+    left: 6%;
+    bottom: 4%;
+}
+
+/*feature-section*/
+.section-title h1 {
+    font-size: 18px;
+}
+
+/*about-section*/
+.about-area {
+    padding: 120px 0 132px;
+}
+.about-thumb img {
+    width: 100%;
+}
+.about-single-shape {
+    display: none;
+}
+.about-counter-shape {
+    top: 74%;
+    left: -12%;
+}
+.about-area .section-title.tow {
+    margin-top: 50px;
+}
+
+.about-area .section-title p {
+    width: 100%;
+}
+/*appointemet-section*/
+.appointment-area {
+    padding: 106px 0 90px;
+}
+.appointment-area .section-title p {
+    width: 100%;
+}
+.appointment-thumb img {
+    width: 100%;
+}
+.appointment-area  .Dreamhub-button a {
+    margin-bottom: 48px;
+}
+.appointment-shape1 {
+    top: 9%;
+    right: -3%;
+}
+.appointment-shape2 {
+    bottom: -8%;
+    left: -10%;
+}
+/*reviw-section*/
+.review-area {
+    padding: 107px 0 85px;
+}
+.circle-chart {
+    margin-bottom: 50px;
+}
+.circle-chart__info {
+    animation: none;
+    opacity: 1;
+}
+.review-content h4 {
+    margin-top: -25px;
+    margin-bottom: 32px;
+}
+
+/*services-section*/
+.single-service-box {
+    padding: 44px 20px 35px;
+}
+/*team-section*/
+.team-area {
+    padding: 107px 0 85px;
+}
+
+.team-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.single-team-box {
+    margin-bottom: 25px;
+}
+
+/*testi-section*/
+.testi-area {
+    padding: 107px 0 114px;
+}
+
+.owl-prev {
+    display: none;
+}
+
+.owl-next {
+    display: none;
+}
+.testi-content p {
+    font-size: 15px;
+    width: 100%;
+    line-height: 27px;
+    margin-top: -13px;
+    margin-bottom: 36px;
+}
+
+/*subscribe-area*/
+.subscribe-area .section-title p {
+    width: 90%;
+    font-size: 15px;
+}
+.subscribe-form input {
+    width: 100%;
+    margin-right: -9px;
+    padding-right: 124px;
+}
+.subscribe-form button {
+    padding: 10px 26px;
+    margin-left: -111px;
+}
+.subscribe-imgs-shape1 {
+    left: -7%;
+}
+.subscribe-imgs-shape2 {
+    right: -36%;
+}
+/*blog-section*/
+.blog-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 50px;
+}
+.blog-content h4.title a {
+    font-size: 15px;
+    line-height: 24px;
+}
+/*footer-section*/
+.footer-widget-desc p {
+    width: 100%;
+}
+.footer-widget-content {
+    margin-top: 50px;
+}
+.footer-widget-title h4 {
+    margin-bottom: 20px;
+}
+.footer-single-shape {
+    left: -10%;
+}
+.footer-shape-3 {
+    bottom: 0%;
+    left: 22%;
+}
+.footer-shape-2 {
+    left: 27%;
+    top: 3%;
+}
+
+.footer-widget-text-tow p {
+    width: 100%;
+}
+/*about-inner-section*/
+.about-imgs-4 {
+    margin-bottom: 30px;
+}
+.about-imgs-2 {
+    margin-bottom: 30px;
+}
+/*counter-section*/
+.counter-box {
+    margin-bottom: 30px;
+}
+
+
+/*breadcumb-section*/
+.bradcumb-area {
+    padding: 100px 0 100px;
+    text-align: center;
+}
+/*faqs-section*/
+.faqs-area {
+    padding: 94px 0 120px;
+}
+.accordion h3 {
+    font-size: 14px;
+    text-indent: 8px;
+    font-size: 12px;
+}
+
+.accordion li p {
+    font-size: 13px;
+    width: 100%;
+    margin-left: 0px;
+}
+.accordion h3::after {
+    top: 26px;
+}
+
+
+/*--blog-details--*/
+.blog-detials-area {
+    padding: 120px 0 89px;
+}
+.blog-detials-area.blog-list {
+    padding: 119px 0 88px;
+}
+.blog-detials-area.blog-tow-column {
+    padding: 118px 0 89px;
+}
+.blog-details-meta span {
+    margin-right: 20px;
+    display: block;
+}
+.blog-details-content h2 {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.blog-details-content h3 {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.blog-details-content-list p {
+    margin-bottom: 18px;
+}
+
+.blog-details-social {
+    text-align: left;
+    margin-top: 20px;
+}
+.blog-details-button a.active {
+    margin-top: 7px;
+}
+.blog-details-author-thumb {
+    float: inherit;
+    margin-right: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.blog-details-author-content h2 {
+    font-size: 18px;;
+}
+.blog-details-author-content {
+    text-align: center;
+}
+
+.blog-details-author-inner {
+    padding: 30px 8px 25px;
+}
+.blog-details-comment-reply a {
+    display: none;
+}
+.blog-details-comment-thumb {
+    float: left;
+    margin-right: 0;
+}
+
+.blog-details-comment-thumb img {
+    width: 88%;
+}
+
+.blog-details-comment.reply {
+    margin-left: 0;
+}
+
+.blog-details-contact {
+    margin: 0;
+}
+
+.sidber-widget-recent-post .recent-widget-content a {
+    font-size: 15px;
+}
+.recent-widget-content span {
+    font-size: 11px;;
+}
+.sidber-widget-recent-post .recent-widget-content span i {
+    margin-right: 0;
+}
+.widget-categories-menu ul li a {
+    font-size: 13px;
+}
+
+/*--services-details--*/
+
+.service-details-main-title h1 {
+    font-size: 22px;
+    line-height: 30px;
+}
+
+.service-details-overview-title h2 {
+    font-size: 22px;
+    line-height: 30px;
+}
+
+.service-details-choose-us-title h2 {
+    font-size: 22px;
+}
+
+.service-details-overview-list ul li {
+    padding-top: 10px;
+}
+
+.service-details-overview-list ul li::before {
+    top: 18px;
+}
+
+/*bradcumb-section*/
+.bradcumb-content h1 {
+    font-size: 28px;
+}
+
+/*portfolio-section*/
+.portfolio-area .section-title p {
+    width: 100%;
+}
+.portfolio_menu ul li {
+    display: block;
+    margin-bottom: 20px;
+}
+
+
+/*--portfolio-details-section--*/
+.row.box-shadow {
+    padding: 58px 0 56px;
+}
+.portfolio-details-thumb img {
+    margin-left: 0;
+    margin-bottom: 26px;
+}
+.portfolio-details-content ul li strong {
+    font-size: 15px;
+}
+.portfolio-details-content ul li {
+    font-size: 14px;
+}
+
+/*pricing-section*/
+.pricing-area {
+    padding: 108px 0 90px;
+}
+.pricing-content {
+    margin-bottom: 30px;
+}
+.pricing-head-text p {
+    width: 65%;
+}
+/*contact-section*/
+.contact-infor {
+    padding: 36px 23px 33px;
+}
+
+/*appointment-section*/
+.appointment-area-tow {
+    padding: 107px 0 69px;
+}
+.appointment-area-tow .section-title {
+    margin-bottom: 50px;
+}
+/*skill-bar-section*/
+.skill-bar-area {
+    padding: 107px 0 118px;
+}
+.skill-bar-area .Dreamhub-button {
+    text-align: left;
+    margin-bottom: 50px;
+}
+/*contact-section*/
+.contact-infor h4 {
+    font-size: 20px;
+}
+
+
+.team-area {
+    padding: 60px 0 85px;
+}
+
+.team-inner-section {
+    padding: 60px 0 0;
+}
+
+.team-area .dreamhub-button {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.team-area .dreamhub-button {
+    text-align: left;
+}
+
+/* Team Details Inner Page */
+.appointment-section, .team-skill-section {
+    padding: 25px 0 45px;
+}
+
+.dentist-section-title h1 {
+    font-size: 20px;
+    line-height: 20px;
+}
+
+ .doctor-info-box {
+    margin-bottom: 30px;
+}
+
+.doctor-info-details {
+    margin-left: 0;
+}
+
+.certificate-thumb img {
+    width: 100%;
+}
+
+.row.products {
+    padding-left: 0;
+}
+
+.upper.widget_search input {
+    width: 100%;
+}
+
+.form_box {
+    padding: 11px 0 30px;
+}
+
+.widget select {
+    display: none;
+}
+
+.single-products-box2 .products-thumb img {
+    width: 210px;
+}
+
+.single-products-box2 .product-title h2 {
+    font-size: 18px;
+    line-height: 8px;
+}
+
+.shops-section p.description {
+    font-size: 14px;
+}
+
+.single-products-box2 {
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.single-products-box2 .products-thumb img {
+    width: inherit;
+}
+
+/* Shop Details Inner Page */
+.shop-detials {
+    padding: 60px 0 40px;
+}
+
+.tabs_item img {
+    width: 100%;
+}
+
+.tabs_item {
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.style-three.tab {
+    padding: 0;
+    margin-right: 0;
+    margin-bottom: 30px;
+}
+
+.style-three .tabs li a {
+    margin-right: 20px;
+}
+
+.style-three .tabs li:nth-child(2) a {
+    margin-right: 0;
+}
+
+.appoinment-tab .tab {
+    padding: 0;
+}
+
+.shop-dtls-info {
+    padding-left: 0;
+}
+
+.product-details-respond .sidebar-description p {
+    font-size: 14px;
+}
+
+table.tab-items-table tr td {
+    padding-right: 8px;
+}
+
+.appoinment-tab .tabs li a {
+    padding: 9px 20px;
+    margin-right: 15px;
+}
+
+.appoinment-tab .tabs li:nth-child(2) a {
+    margin-right: 0;
+}
+
+.tabs_item {
+    padding: 0;
+}
+
+.category-count-button {
+    display: inline-block;
+}
+
+.category-button {
+    padding-left: 0;
+    margin-top: 25px;
+}
+
+table.tab-items-table tr {
+    display: flex;
+    padding: 10px 0 0 8px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.map-section iframe {
+    width: 100%;
+    height: auto;
+}
+
+
+}
+
+
+

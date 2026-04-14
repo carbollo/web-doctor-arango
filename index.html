@@ -782,6 +782,15 @@
 	<script>
 		  $('.circlechart').circlechart();
 	</script>
+	<script>
+		(function () {
+			var currentPath = window.location.pathname;
+			var cleanPath = currentPath.replace(/index\.html$/, "");
+			if (cleanPath !== currentPath) {
+				window.history.replaceState({}, "", cleanPath + window.location.search + window.location.hash);
+			}
+		})();
+	</script>
 
 </body>
 </html>

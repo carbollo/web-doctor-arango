@@ -5488,5 +5488,10 @@ transform:rotateX(0deg) translateY(0px)
 
 .topdoctors-opinions-block {
   margin-top: 24px;
-  margin-bottom: 24px;
+  margin-bottom: 0;
+}
+
+.topdoctors-opinions-spacer {
+  width: 100%;
+  height: 24px;
 }

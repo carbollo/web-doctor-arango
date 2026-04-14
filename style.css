@@ -5454,8 +5454,8 @@ transform:rotateX(0deg) translateY(0px)
 }
 
 .dance2 {
-  -webkit-animation: dance 3s alternate infinite;
-  animation: dance 3s alternate infinite;
+  -webkit-animation: dance2 3s alternate infinite;
+  animation: dance2 3s alternate infinite;
 }
 
 @keyframes dance2 {

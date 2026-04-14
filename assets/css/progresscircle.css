@@ -58,7 +58,8 @@
 }
 
 .circle-chart__percent {
-    alignment-baseline: hanging;
+    alignment-baseline: middle;
+    dominant-baseline: middle;
     text-anchor: middle;
     font-size: 8px;
 }

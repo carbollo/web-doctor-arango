@@ -1169,7 +1169,7 @@ table.tab-items-table tr td {
 }
 .circle-chart__info {
     animation: none;
-    transform: translateY(0.3em);
+    transform: translateY(0);
     opacity: 1;
 }
 .review-content h4 {
@@ -1515,66 +1515,6 @@ table.tab-items-table tr td {
     display: none;
 }
 
-/* ================================================== */
-/* Custom responsive fixes for current landing content */
-/* ================================================== */
-
-/* Tablet and below */
-@media only screen and (max-width: 991px) {
-  .topdoctors-opinions-block {
-    margin-top: 16px;
-    margin-bottom: 0;
-  }
-
-  .topdoctors-opinions-spacer {
-    height: 16px;
-  }
-
-  #topdoctors-es-widget-container-12 {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  #topdoctors-es-widget-container-13 {
-    max-width: 100% !important;
-    margin: 0 auto;
-  }
-
-  /* Undo desktop-only manual offsets on contact section */
-  .contact-area .contact-infor {
-    transform: none !important;
-  }
-
-  .contact-area .row > .col-lg-6:last-child {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-}
-
-/* Mobile only */
-@media only screen and (max-width: 767px) {
-  .service-area {
-    padding-bottom: 70px;
-  }
-
-  .topdoctors-opinions-block .container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .topdoctors-opinions-spacer {
-    height: 12px;
-  }
-
-  .contact-area {
-    padding: 80px 0 80px;
-  }
-
-  .contact-area .contact-infor {
-    margin-bottom: 24px !important;
-    padding: 28px 18px 24px;
-  }
-}
 /*header-section*/
 .hero-area {
     height: 620px;
@@ -2140,6 +2080,83 @@ table.tab-items-table tr {
 }
 
 
+}
+
+/* ================================================== */
+/* Custom responsive fixes for current landing content */
+/* ================================================== */
+
+/* Tablet and below */
+@media only screen and (max-width: 991px) {
+  .topdoctors-opinions-block {
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  .topdoctors-opinions-spacer {
+    height: 16px;
+  }
+
+  #topdoctors-es-widget-container-12 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #topdoctors-es-widget-container-13 {
+    max-width: 100% !important;
+    margin: 0 auto;
+  }
+
+  /* Undo desktop-only manual offsets on contact section */
+  .contact-area .contact-infor {
+    transform: none !important;
+  }
+
+  .contact-area .row > .col-lg-6:last-child {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* Mobile only */
+@media only screen and (max-width: 767px) {
+  .service-area {
+    padding-bottom: 70px;
+  }
+
+  .topdoctors-opinions-block .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .topdoctors-opinions-spacer {
+    height: 12px;
+  }
+
+  .contact-area {
+    padding: 80px 0 80px;
+  }
+
+  .contact-area .contact-infor {
+    margin-bottom: 24px !important;
+    padding: 28px 18px 24px;
+  }
+
+  /* Keep the pulsing about-circle under control on mobile */
+  .about-single-imgs {
+    left: -2% !important;
+    top: 8% !important;
+  }
+
+  .about-single-imgs.dance2 {
+    -webkit-animation: none !important;
+    animation: none !important;
+  }
+
+  .about-single-imgs img {
+    width: 72%;
+    height: auto;
+  }
 }
 
 

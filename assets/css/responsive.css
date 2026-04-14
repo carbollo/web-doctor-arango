@@ -2174,5 +2174,15 @@ table.tab-items-table tr {
   }
 }
 
+/* Force circle metric labels to stay visually centered */
+.circle-chart__info {
+  transform: translateY(0) !important;
+}
+
+.circle-chart__percent {
+  text-anchor: middle !important;
+  dominant-baseline: middle !important;
+}
+
 
 

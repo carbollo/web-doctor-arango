@@ -2144,18 +2144,33 @@ table.tab-items-table tr {
 
   /* Keep the pulsing about-circle under control on mobile */
   .about-single-imgs {
-    left: -2% !important;
-    top: 8% !important;
+    left: 6% !important;
+    top: 12% !important;
+    z-index: 1;
   }
 
   .about-single-imgs.dance2 {
-    -webkit-animation: none !important;
-    animation: none !important;
+    -webkit-animation: dance2Mobile 2.8s ease-in-out infinite alternate !important;
+    animation: dance2Mobile 2.8s ease-in-out infinite alternate !important;
   }
 
   .about-single-imgs img {
-    width: 72%;
+    width: 58%;
     height: auto;
+  }
+
+  .about-thumb > img {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+@keyframes dance2Mobile {
+  0% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1.02);
   }
 }
 

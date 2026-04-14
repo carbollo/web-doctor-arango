@@ -2146,7 +2146,7 @@ table.tab-items-table tr {
   .about-single-imgs {
     left: 6% !important;
     top: 12% !important;
-    z-index: 1;
+    z-index: 3;
   }
 
   .about-single-imgs.dance2 {

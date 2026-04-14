@@ -296,6 +296,7 @@
     position: absolute;
     left: 4%;
     top: 42%;
+    display: none !important;
 }
 
 .hero-social-icon ul{
@@ -324,23 +325,22 @@
     display: inline-block;
 }
 
-.hero-social-icon ul li i {
-    display: inline-block;
+.hero-social-icon ul li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: #0C59DB;
-    background: #fff;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    line-height: 35px;
-    border-radius: 50px;
     margin-bottom: 9px;
     transition: 0.5s;
 }
 
+.hero-social-icon ul li a svg {
+    width: 24px;
+    height: 24px;
+}
 
-.hero-social-icon ul li i:hover{
-    color: #fff;
-    background:#0C59DB;
+.hero-social-icon ul li a:hover {
+    color: #082e72;
 }
 
 .hero-single-shape1 {
@@ -1320,6 +1320,13 @@ span.fill {
     position: relative;
 }
 
+.footer-social-icon ul li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
 .footer-social-icon ul li i {
     display: inline-block;
     font-size: 15px;
@@ -1334,7 +1341,44 @@ span.fill {
     transition: 0.5s;
 }
 
+.footer-social-icon ul li a svg {
+    display: inline-block;
+    color: #fff;
+    background: #5E92E6;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    text-align: center;
+    padding: 7px;
+    margin-right: 3px;
+    transition: 0.5s;
+}
+
+.footer-social-icon ul li a img {
+    display: block;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 3px;
+    transition: 0.5s;
+}
+
+.footer-social-icon ul li a img.tiktok-footer-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.footer-social-icon ul li a img.instagram-footer-icon {
+    width: 30px;
+    height: 30px;
+}
+
 .footer-social-icon ul li i:hover{
+    color:#0B5ADB;
+    background:#FFF;
+}
+
+.footer-social-icon ul li a:hover svg{
     color:#0B5ADB;
     background:#FFF;
 }

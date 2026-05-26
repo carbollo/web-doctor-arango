@@ -1,8 +1,11 @@
 require("dotenv").config();
 
+const crypto = require("crypto");
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 const { Pool } = require("pg");
 
 const app = express();
@@ -10,8 +13,50 @@ const PORT = process.env.PORT || 8080;
 const ROOT = __dirname;
 const ADMIN_API_KEY = process.env.ADMIN_API_KEY || "";
 
+const LIMITS = {
+  title: 200,
+  excerpt: 300,
+  content: 50000,
+  image_url: 500,
+  search: 100,
+};
+const SLUG_REGEX = /^[a-z0-9-]{1,120}$/;
+const ALLOWED_STATUS = new Set(["all", "published", "draft"]);
+
 let pool = null;
 let dbReady = false;
+
+function getAllowedOrigins() {
+  const origins = new Set([
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+  ]);
+  if (process.env.ADMIN_CORS_ORIGINS) {
+    process.env.ADMIN_CORS_ORIGINS.split(",")
+      .map((value) => value.trim())
+      .filter(Boolean)
+      .forEach((value) => origins.add(value));
+  }
+  return origins;
+}
+
+const allowedOrigins = getAllowedOrigins();
+
+function secureCompareApiKey(provided) {
+  if (!ADMIN_API_KEY || typeof provided !== "string") {
+    return false;
+  }
+  try {
+    const expected = Buffer.from(ADMIN_API_KEY, "utf8");
+    const actual = Buffer.from(provided, "utf8");
+    if (expected.length !== actual.length) {
+      return false;
+    }
+    return crypto.timingSafeEqual(expected, actual);
+  } catch {
+    return false;
+  }
+}
 
 function slugify(text) {
   return String(text)
@@ -23,14 +68,48 @@ function slugify(text) {
     .slice(0, 120);
 }
 
+function isValidSlug(slug) {
+  return SLUG_REGEX.test(slug);
+}
+
+function clampString(value, max) {
+  return String(value ?? "").slice(0, max);
+}
+
+function validatePostBody(body, isUpdate = false) {
+  const errors = [];
+  if (!isUpdate || body.title != null) {
+    const title = clampString(body.title, LIMITS.title).trim();
+    if (!title) {
+      errors.push("El titulo es obligatorio.");
+    }
+  }
+  if (body.slug != null && String(body.slug).trim()) {
+    const slug = slugify(body.slug);
+    if (!slug || !isValidSlug(slug)) {
+      errors.push("Slug invalido.");
+    }
+  }
+  if (body.excerpt != null && clampString(body.excerpt, LIMITS.excerpt).length > LIMITS.excerpt) {
+    errors.push("Subtitulo demasiado largo.");
+  }
+  if (body.content != null && clampString(body.content, LIMITS.content).length > LIMITS.content) {
+    errors.push("Contenido demasiado largo.");
+  }
+  if (body.image_url != null && clampString(body.image_url, LIMITS.image_url).length > LIMITS.image_url) {
+    errors.push("URL de imagen demasiado larga.");
+  }
+  return errors;
+}
+
 function requireApiKey(req, res, next) {
   if (!ADMIN_API_KEY) {
     return res.status(503).json({
       error: "ADMIN_API_KEY no configurada en el servidor.",
     });
   }
-  const key = req.get("x-api-key");
-  if (key !== ADMIN_API_KEY) {
+  const key = req.get("x-api-key") || "";
+  if (!secureCompareApiKey(key)) {
     return res.status(401).json({ error: "API key invalida." });
   }
   next();
@@ -109,11 +188,59 @@ async function initDb() {
   console.log("PostgreSQL conectado y tabla posts lista.");
 }
 
-app.use(cors());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+  })
+);
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.has(origin)) {
+        return callback(null, true);
+      }
+      return callback(null, false);
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "x-api-key"],
+  })
+);
+
 app.use(express.json({ limit: "2mb" }));
+
+const verifyLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Demasiados intentos. Espera unos minutos." },
+});
+
+const adminWriteLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Demasiadas peticiones. Intenta de nuevo en un minuto." },
+});
 
 app.get("/api/health", async (_req, res) => {
   res.json({ ok: true, db: dbReady });
+});
+
+app.post("/api/admin/verify", verifyLimiter, (req, res) => {
+  if (!ADMIN_API_KEY) {
+    return res.status(503).json({
+      error: "ADMIN_API_KEY no configurada en el servidor.",
+    });
+  }
+  const key = req.get("x-api-key") || "";
+  if (!secureCompareApiKey(key)) {
+    return res.status(401).json({ error: "API key invalida." });
+  }
+  res.json({ ok: true });
 });
 
 app.get("/api/posts", async (req, res) => {
@@ -132,70 +259,88 @@ app.get("/api/posts", async (req, res) => {
   res.json(result.rows);
 });
 
-app.get("/api/admin/posts", requireApiKey, async (req, res) => {
-  if (!dbReady) {
-    return res.status(503).json({ error: "Base de datos no disponible." });
-  }
+app.get(
+  "/api/admin/posts",
+  adminWriteLimiter,
+  requireApiKey,
+  async (req, res) => {
+    if (!dbReady) {
+      return res.status(503).json({ error: "Base de datos no disponible." });
+    }
 
-  const status = req.query.status || "all";
-  const q = String(req.query.q || "").trim();
-  const conditions = [];
-  const params = [];
+    const status = req.query.status || "all";
+    if (!ALLOWED_STATUS.has(status)) {
+      return res.status(400).json({ error: "Filtro de estado invalido." });
+    }
 
-  if (status === "published") {
-    conditions.push("is_published = TRUE");
-  } else if (status === "draft") {
-    conditions.push("is_published = FALSE");
-  }
+    const q = clampString(req.query.q, LIMITS.search).trim();
+    const conditions = [];
+    const params = [];
 
-  if (q) {
-    params.push(`%${q}%`);
-    conditions.push(
-      `(title ILIKE $${params.length} OR slug ILIKE $${params.length})`
+    if (status === "published") {
+      conditions.push("is_published = TRUE");
+    } else if (status === "draft") {
+      conditions.push("is_published = FALSE");
+    }
+
+    if (q) {
+      params.push(`%${q}%`);
+      conditions.push(
+        `(title ILIKE $${params.length} OR slug ILIKE $${params.length})`
+      );
+    }
+
+    const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
+
+    const result = await pool.query(
+      `SELECT id, title, slug, excerpt, image_url, published_at, is_published, created_at
+       FROM posts
+       ${where}
+       ORDER BY published_at DESC, id DESC`,
+      params
     );
+    res.json(result.rows);
   }
+);
 
-  const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
-
-  const result = await pool.query(
-    `SELECT id, title, slug, excerpt, image_url, published_at, is_published, created_at
-     FROM posts
-     ${where}
-     ORDER BY published_at DESC, id DESC`,
-    params
-  );
-  res.json(result.rows);
-});
-
-app.get("/api/admin/posts/:id", requireApiKey, async (req, res) => {
-  if (!dbReady) {
-    return res.status(503).json({ error: "Base de datos no disponible." });
+app.get(
+  "/api/admin/posts/:id",
+  adminWriteLimiter,
+  requireApiKey,
+  async (req, res) => {
+    if (!dbReady) {
+      return res.status(503).json({ error: "Base de datos no disponible." });
+    }
+    const id = parseInt(req.params.id, 10);
+    if (!id || id < 1) {
+      return res.status(400).json({ error: "ID invalido." });
+    }
+    const result = await pool.query(
+      `SELECT id, title, slug, excerpt, content, image_url, published_at, is_published, created_at
+       FROM posts WHERE id = $1 LIMIT 1`,
+      [id]
+    );
+    if (!result.rows.length) {
+      return res.status(404).json({ error: "Post no encontrado." });
+    }
+    res.json(result.rows[0]);
   }
-  const id = parseInt(req.params.id, 10);
-  if (!id) {
-    return res.status(400).json({ error: "ID invalido." });
-  }
-  const result = await pool.query(
-    `SELECT id, title, slug, excerpt, content, image_url, published_at, is_published, created_at
-     FROM posts WHERE id = $1 LIMIT 1`,
-    [id]
-  );
-  if (!result.rows.length) {
-    return res.status(404).json({ error: "Post no encontrado." });
-  }
-  res.json(result.rows[0]);
-});
+);
 
 app.get("/api/posts/:slug", async (req, res) => {
   if (!dbReady) {
     return res.status(503).json({ error: "Base de datos no disponible." });
+  }
+  const slug = String(req.params.slug || "").trim();
+  if (!isValidSlug(slug)) {
+    return res.status(400).json({ error: "Slug invalido." });
   }
   const result = await pool.query(
     `SELECT id, title, slug, excerpt, content, image_url, published_at
      FROM posts
      WHERE slug = $1 AND is_published = TRUE
      LIMIT 1`,
-    [req.params.slug]
+    [slug]
   );
   if (!result.rows.length) {
     return res.status(404).json({ error: "Post no encontrado." });
@@ -203,9 +348,14 @@ app.get("/api/posts/:slug", async (req, res) => {
   res.json(result.rows[0]);
 });
 
-app.post("/api/posts", requireApiKey, async (req, res) => {
+app.post("/api/posts", adminWriteLimiter, requireApiKey, async (req, res) => {
   if (!dbReady) {
     return res.status(503).json({ error: "Base de datos no disponible." });
+  }
+
+  const validationErrors = validatePostBody(req.body, false);
+  if (validationErrors.length) {
+    return res.status(400).json({ error: validationErrors[0] });
   }
 
   const {
@@ -218,12 +368,8 @@ app.post("/api/posts", requireApiKey, async (req, res) => {
     is_published = true,
   } = req.body;
 
-  if (!title || !String(title).trim()) {
-    return res.status(400).json({ error: "El titulo es obligatorio." });
-  }
-
   const finalSlug = slugify(slug || title);
-  if (!finalSlug) {
+  if (!finalSlug || !isValidSlug(finalSlug)) {
     return res.status(400).json({ error: "Slug invalido." });
   }
 
@@ -233,11 +379,11 @@ app.post("/api/posts", requireApiKey, async (req, res) => {
        VALUES ($1, $2, $3, $4, $5, COALESCE($6::timestamptz, NOW()), $7)
        RETURNING id, title, slug, excerpt, content, image_url, published_at, is_published`,
       [
-        String(title).trim(),
+        clampString(title, LIMITS.title).trim(),
         finalSlug,
-        String(excerpt),
-        String(content),
-        String(image_url),
+        clampString(excerpt, LIMITS.excerpt),
+        clampString(content, LIMITS.content),
+        clampString(image_url, LIMITS.image_url),
         published_at || null,
         Boolean(is_published),
       ]
@@ -252,14 +398,19 @@ app.post("/api/posts", requireApiKey, async (req, res) => {
   }
 });
 
-app.put("/api/posts/:id", requireApiKey, async (req, res) => {
+app.put("/api/posts/:id", adminWriteLimiter, requireApiKey, async (req, res) => {
   if (!dbReady) {
     return res.status(503).json({ error: "Base de datos no disponible." });
   }
 
   const id = parseInt(req.params.id, 10);
-  if (!id) {
+  if (!id || id < 1) {
     return res.status(400).json({ error: "ID invalido." });
+  }
+
+  const validationErrors = validatePostBody(req.body, true);
+  if (validationErrors.length) {
+    return res.status(400).json({ error: validationErrors[0] });
   }
 
   const {
@@ -271,6 +422,11 @@ app.put("/api/posts/:id", requireApiKey, async (req, res) => {
     published_at,
     is_published,
   } = req.body;
+
+  const nextSlug = slug != null && String(slug).trim() ? slugify(slug) : null;
+  if (nextSlug && !isValidSlug(nextSlug)) {
+    return res.status(400).json({ error: "Slug invalido." });
+  }
 
   try {
     const result = await pool.query(
@@ -286,11 +442,11 @@ app.put("/api/posts/:id", requireApiKey, async (req, res) => {
        RETURNING id, title, slug, excerpt, content, image_url, published_at, is_published`,
       [
         id,
-        title ? String(title).trim() : null,
-        slug ? slugify(slug) : null,
-        excerpt != null ? String(excerpt) : null,
-        content != null ? String(content) : null,
-        image_url != null ? String(image_url) : null,
+        title != null ? clampString(title, LIMITS.title).trim() : null,
+        nextSlug,
+        excerpt != null ? clampString(excerpt, LIMITS.excerpt) : null,
+        content != null ? clampString(content, LIMITS.content) : null,
+        image_url != null ? clampString(image_url, LIMITS.image_url) : null,
         published_at || null,
         is_published != null ? Boolean(is_published) : null,
       ]
@@ -308,17 +464,28 @@ app.put("/api/posts/:id", requireApiKey, async (req, res) => {
   }
 });
 
-app.delete("/api/posts/:id", requireApiKey, async (req, res) => {
-  if (!dbReady) {
-    return res.status(503).json({ error: "Base de datos no disponible." });
+app.delete(
+  "/api/posts/:id",
+  adminWriteLimiter,
+  requireApiKey,
+  async (req, res) => {
+    if (!dbReady) {
+      return res.status(503).json({ error: "Base de datos no disponible." });
+    }
+    const id = parseInt(req.params.id, 10);
+    if (!id || id < 1) {
+      return res.status(400).json({ error: "ID invalido." });
+    }
+    const result = await pool.query(
+      "DELETE FROM posts WHERE id = $1 RETURNING id",
+      [id]
+    );
+    if (!result.rows.length) {
+      return res.status(404).json({ error: "Post no encontrado." });
+    }
+    res.json({ ok: true, id: result.rows[0].id });
   }
-  const id = parseInt(req.params.id, 10);
-  const result = await pool.query("DELETE FROM posts WHERE id = $1 RETURNING id", [id]);
-  if (!result.rows.length) {
-    return res.status(404).json({ error: "Post no encontrado." });
-  }
-  res.json({ ok: true, id: result.rows[0].id });
-});
+);
 
 app.get("/admin", (_req, res) => {
   res.sendFile(path.join(ROOT, "admin", "index.html"));

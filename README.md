@@ -37,28 +37,40 @@ En el **servicio web** (no solo en PostgreSQL), configura:
 | Variable | Descripción |
 |----------|-------------|
 | `DATABASE_URL` | Connection string del plugin PostgreSQL de Railway (copiar desde el servicio de base de datos). |
-| `ADMIN_API_KEY` | Clave secreta para publicar desde `/admin` (cabecera `x-api-key`). |
+| `ADMIN_API_KEY` | Clave secreta para el panel `/admin` (cabecera `x-api-key`). Usa una clave larga y aleatoria. |
+| `ADMIN_CORS_ORIGINS` | Opcional. Orígenes extra separados por coma (ej. `https://drpauloarango.com`). |
 | `PORT` | Railway la inyecta automáticamente. |
+
+En producción, añade tu dominio en `ADMIN_CORS_ORIGINS` si el admin llama a la API desde otro host.
 
 ## Panel de administración (`/admin`)
 
-El panel tiene tres apartados:
+Al entrar, el panel está **bloqueado**: solo puedes usar **Ajustes** hasta validar la API key en el servidor.
 
 | Apartado | Función |
 |----------|---------|
-| **Historial** | Lista todas las entradas (publicadas y borradores), buscar, filtrar, editar y eliminar |
-| **Nuevo post** | Crear entrada o editar una existente (mismo formulario) |
-| **Ajustes** | Guardar la API key en la sesión del navegador y ver estado de la base de datos |
+| **Ajustes** | Pegar API key, **Validar y entrar**, estado de PostgreSQL, cerrar sesión |
+| **Historial** | (Tras validar) listar, buscar, filtrar, editar y eliminar entradas |
+| **Nuevo post** | (Tras validar) crear o editar publicaciones |
 
 ### Flujo recomendado
 
 1. Despliega con `DATABASE_URL` y `ADMIN_API_KEY` configuradas.
 2. Abre `https://tu-dominio/admin`.
-3. Ve a **Ajustes**, pega `ADMIN_API_KEY` y pulsa **Guardar clave**.
-4. En **Historial** gestiona entradas existentes o **Nueva entrada** para publicar.
-5. Las entradas publicadas aparecen en `/blog` y en la home (últimas 3).
+3. En **Ajustes**, pega `ADMIN_API_KEY` y pulsa **Validar y entrar**.
+4. Si la clave es correcta, se desbloquean Historial y Nuevo post.
+5. Al recargar la página, la clave guardada en `sessionStorage` se **revalida** en el servidor antes de desbloquear.
 
 Design system del admin: [`.stitch/DESIGN.md`](.stitch/DESIGN.md).
+
+## Seguridad
+
+- **SQL injection**: consultas con parámetros (`$1`, `$2`); filtros de estado con valores fijos; búsqueda parametrizada.
+- **API key**: comparación con `crypto.timingSafeEqual`; endpoint `POST /api/admin/verify` con límite de 10 intentos / 15 min por IP.
+- **CORS**: solo orígenes permitidos (localhost + `ADMIN_CORS_ORIGINS`).
+- **Cabeceras HTTP**: `helmet` activo.
+- **Rate limit**: rutas admin limitadas a 60 peticiones / minuto por IP.
+- **Validación**: longitudes máximas en título, subtítulo, contenido e imagen; slug solo `[a-z0-9-]`.
 
 ## API REST
 
@@ -70,6 +82,7 @@ Design system del admin: [`.stitch/DESIGN.md`](.stitch/DESIGN.md).
 
 ### Administración (header `x-api-key`)
 
+- `POST /api/admin/verify` — validar clave (obligatorio antes de usar el panel)
 - `GET /api/admin/posts` — todas las entradas (`?status=published|draft|all`, `?q=texto`)
 - `GET /api/admin/posts/:id` — detalle completo para edición
 - `POST /api/posts` — crear

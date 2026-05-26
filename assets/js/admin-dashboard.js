@@ -3,6 +3,7 @@
 
   var STORAGE_KEY = "dr_arango_admin_api_key";
   var postsCache = [];
+  var isUnlocked = false;
 
   var sidebar = document.getElementById("admin-sidebar");
   var overlay = document.getElementById("admin-overlay");
@@ -23,6 +24,9 @@
   var apiKeyInput = document.getElementById("admin-api-key");
   var dbStatus = document.getElementById("db-status");
   var settingsForm = document.getElementById("settings-form");
+  var authStatus = document.getElementById("auth-status");
+  var verifyBtn = document.getElementById("settings-verify-btn");
+  var logoutBtn = document.getElementById("settings-logout-btn");
 
   function getApiKey() {
     return sessionStorage.getItem(STORAGE_KEY) || "";
@@ -103,12 +107,64 @@
     opts.headers = Object.assign({}, opts.headers || {}, { "x-api-key": key });
     return fetch(url, opts).then(function (res) {
       return res.json().then(function (data) {
+        if (res.status === 401) {
+          setApiKey("");
+          lockAdmin("Sesion invalida. Vuelve a validar la API key.");
+        }
         return { ok: res.ok, status: res.status, data: data };
       });
     });
   }
 
-  function switchPanel(panelId) {
+  function setAuthBanner(message, type) {
+    if (!authStatus) return;
+    authStatus.hidden = false;
+    authStatus.className = "admin-auth-banner" + (type ? " " + type : "");
+    authStatus.innerHTML =
+      '<i class="bi bi-shield-lock"></i><span>' + escapeHtml(message) + "</span>";
+  }
+
+  function lockAdmin(message) {
+    isUnlocked = false;
+    document.body.classList.add("admin-locked");
+    document.querySelectorAll(".admin-nav button[data-panel]").forEach(function (btn) {
+      var isAjustes = btn.getAttribute("data-panel") === "ajustes";
+      btn.disabled = !isAjustes;
+      btn.classList.toggle("admin-nav-locked", !isAjustes);
+    });
+    logoutBtn.hidden = true;
+    verifyBtn.hidden = false;
+    if (message) {
+      setAuthBanner(message, "error");
+    } else {
+      setAuthBanner(
+        "Debes validar la API key para acceder al historial y crear entradas.",
+        ""
+      );
+    }
+    switchPanel("ajustes", true);
+  }
+
+  function unlockAdmin() {
+    isUnlocked = true;
+    document.body.classList.remove("admin-locked");
+    document.querySelectorAll(".admin-nav button[data-panel]").forEach(function (btn) {
+      btn.disabled = false;
+      btn.classList.remove("admin-nav-locked");
+    });
+    logoutBtn.hidden = false;
+    verifyBtn.hidden = true;
+    if (authStatus) {
+      authStatus.hidden = true;
+    }
+  }
+
+  function switchPanel(panelId, force) {
+    if (!force && !isUnlocked && panelId !== "ajustes") {
+      showToast("Valida la API key en Ajustes primero.", "error");
+      switchPanel("ajustes", true);
+      return;
+    }
     document.querySelectorAll(".admin-nav button").forEach(function (btn) {
       var active = btn.getAttribute("data-panel") === panelId;
       btn.classList.toggle("active", active);
@@ -121,10 +177,21 @@
     overlay.classList.remove("visible");
   }
 
+  function verifyApiKey(key) {
+    return fetch("/api/admin/verify", {
+      method: "POST",
+      headers: { "x-api-key": key },
+    }).then(function (res) {
+      return res.json().then(function (data) {
+        return { ok: res.ok, status: res.status, data: data };
+      });
+    });
+  }
+
   function requireApiKeyOrRedirect() {
-    if (!getApiKey()) {
-      showToast("Configura la API key en Ajustes.", "error");
-      switchPanel("ajustes");
+    if (!isUnlocked || !getApiKey()) {
+      showToast("Valida la API key en Ajustes.", "error");
+      lockAdmin();
       return false;
     }
     return true;
@@ -333,6 +400,7 @@
 
   document.querySelectorAll(".admin-nav button").forEach(function (btn) {
     btn.addEventListener("click", function () {
+      if (btn.disabled) return;
       var panel = btn.getAttribute("data-panel");
       switchPanel(panel);
       if (panel === "historial") loadHistory();
@@ -426,26 +494,73 @@
     event.preventDefault();
     var key = apiKeyInput.value.trim();
     if (!key) {
+      setAuthBanner("Introduce la API key.", "error");
       showToast("Introduce la API key.", "error");
       return;
     }
-    setApiKey(key);
-    showToast("API key guardada en esta sesion.", "success");
-    loadHistory();
+
+    verifyBtn.disabled = true;
+    setAuthBanner("Validando clave...", "");
+
+    verifyApiKey(key)
+      .then(function (result) {
+        if (!result.ok) {
+          setApiKey("");
+          lockAdmin(result.data.error || "API key invalida.");
+          showToast(result.data.error || "API key invalida.", "error");
+          return;
+        }
+        setApiKey(key);
+        unlockAdmin();
+        showToast("Acceso concedido.", "success");
+        switchPanel("historial");
+        loadHistory();
+      })
+      .catch(function () {
+        setApiKey("");
+        lockAdmin("No se pudo validar la clave. Revisa la conexion.");
+        showToast("Error de conexion al validar.", "error");
+      })
+      .finally(function () {
+        verifyBtn.disabled = false;
+      });
   });
 
-  document.getElementById("settings-clear-key").addEventListener("click", function () {
+  logoutBtn.addEventListener("click", function () {
     setApiKey("");
-    showToast("Clave eliminada de la sesion.", "success");
+    lockAdmin();
+    historyContent.innerHTML =
+      '<div class="admin-empty">Inicia sesion con tu API key para ver el historial.</div>';
+    showToast("Sesion cerrada.", "success");
   });
 
-  setApiKey(getApiKey());
-  loadHealth();
-  if (getApiKey()) {
-    loadHistory();
-  } else {
-    historyContent.innerHTML =
-      '<div class="admin-empty">Ve a <strong>Ajustes</strong> y guarda tu API key para empezar.</div>';
-    switchPanel("ajustes");
+  function tryRestoreSession() {
+    var saved = getApiKey();
+    if (!saved) {
+      lockAdmin();
+      historyContent.innerHTML =
+        '<div class="admin-empty">Valida tu API key en Ajustes para empezar.</div>';
+      return;
+    }
+    apiKeyInput.value = saved;
+    setAuthBanner("Comprobando sesion guardada...", "");
+    verifyApiKey(saved)
+      .then(function (result) {
+        if (!result.ok) {
+          setApiKey("");
+          lockAdmin("La clave guardada ya no es valida.");
+          return;
+        }
+        unlockAdmin();
+        switchPanel("historial");
+        loadHistory();
+      })
+      .catch(function () {
+        lockAdmin("No se pudo verificar la sesion. Valida de nuevo.");
+      });
   }
+
+  loadHealth();
+  switchPanel("ajustes", true);
+  tryRestoreSession();
 })();

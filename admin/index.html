@@ -3,12 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex, nofollow">
 	<title>Panel del blog — DR Arango</title>
 	<link rel="icon" type="image/svg+xml" href="../assets/images/fav-icon/icon.svg">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="../assets/css/admin-dashboard.css" type="text/css" media="all" />
 </head>
-<body class="admin-body">
+<body class="admin-body admin-locked">
 
 <div class="admin-overlay" id="admin-overlay" aria-hidden="true"></div>
 
@@ -23,19 +24,19 @@
 		</div>
 		<ul class="admin-nav" role="tablist">
 			<li>
-				<button type="button" class="active" data-panel="historial" role="tab" aria-selected="true">
+				<button type="button" class="admin-nav-locked" data-panel="historial" role="tab" aria-selected="false" disabled>
 					<i class="bi bi-journal-text" aria-hidden="true"></i>
 					Historial
 				</button>
 			</li>
 			<li>
-				<button type="button" data-panel="nuevo" role="tab" aria-selected="false">
+				<button type="button" class="admin-nav-locked" data-panel="nuevo" role="tab" aria-selected="false" disabled>
 					<i class="bi bi-plus-circle" aria-hidden="true"></i>
 					Nuevo post
 				</button>
 			</li>
 			<li>
-				<button type="button" data-panel="ajustes" role="tab" aria-selected="false">
+				<button type="button" class="active" data-panel="ajustes" role="tab" aria-selected="true">
 					<i class="bi bi-gear" aria-hidden="true"></i>
 					Ajustes
 				</button>
@@ -55,7 +56,7 @@
 			<span class="admin-brand"><i class="bi bi-heart-pulse-fill"></i> DR Arango</span>
 		</div>
 
-		<section class="admin-panel active" id="panel-historial" role="tabpanel">
+		<section class="admin-panel" id="panel-historial" role="tabpanel">
 			<div class="admin-panel-header">
 				<h1>Historial de entradas</h1>
 				<p>Gestiona, edita o elimina las publicaciones del blog.</p>
@@ -131,12 +132,17 @@
 			</div>
 		</section>
 
-		<section class="admin-panel" id="panel-ajustes" role="tabpanel">
+		<section class="admin-panel active" id="panel-ajustes" role="tabpanel">
 			<div class="admin-panel-header">
-				<h1>Ajustes</h1>
-				<p>Conexion con el servidor y clave de administracion.</p>
+				<h1>Acceso al panel</h1>
+				<p>Introduce la API key de Railway para gestionar el blog.</p>
 			</div>
 			<div class="admin-card">
+				<div id="auth-status" class="admin-auth-banner" role="alert">
+					<i class="bi bi-shield-lock"></i>
+					<span>Debes validar la API key para acceder al historial y crear entradas.</span>
+				</div>
+
 				<div id="db-status" class="admin-status-row warn">
 					<i class="bi bi-hourglass-split"></i>
 					<span>Comprobando conexion...</span>
@@ -144,15 +150,15 @@
 
 				<form id="settings-form" class="admin-form">
 					<label for="admin-api-key">API key (ADMIN_API_KEY)</label>
-					<input type="password" id="admin-api-key" autocomplete="off" placeholder="Pega la clave de Railway">
-					<p class="admin-hint">Se guarda en esta sesion del navegador (sessionStorage). No la compartas.</p>
+					<input type="password" id="admin-api-key" autocomplete="off" placeholder="Pega la clave de Railway" required>
+					<p class="admin-hint">Se valida en el servidor antes de desbloquear el panel.</p>
 
 					<div class="admin-form-actions">
-						<button type="submit" class="admin-btn admin-btn-primary">
-							<i class="bi bi-shield-lock"></i> Guardar clave
+						<button type="submit" class="admin-btn admin-btn-primary" id="settings-verify-btn">
+							<i class="bi bi-shield-check"></i> Validar y entrar
 						</button>
-						<button type="button" class="admin-btn admin-btn-secondary" id="settings-clear-key">
-							Borrar clave guardada
+						<button type="button" class="admin-btn admin-btn-secondary" id="settings-logout-btn" hidden>
+							<i class="bi bi-box-arrow-right"></i> Cerrar sesion
 						</button>
 					</div>
 				</form>

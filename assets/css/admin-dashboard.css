@@ -117,6 +117,48 @@ body.admin-body {
   font-size: 1.15rem;
 }
 
+.admin-nav button:disabled,
+.admin-nav button.admin-nav-locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.admin-locked .admin-nav button[data-panel="ajustes"] {
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.admin-auth-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background: rgba(12, 89, 219, 0.08);
+  border: 1px solid rgba(12, 89, 219, 0.2);
+  color: var(--admin-primary);
+  font-size: 0.9rem;
+}
+
+.admin-auth-banner.error {
+  background: #fee2e2;
+  border-color: #fecaca;
+  color: var(--admin-error);
+}
+
+.admin-auth-banner.success {
+  background: #d1fae5;
+  border-color: #a7f3d0;
+  color: var(--admin-success);
+}
+
+.admin-auth-banner[hidden] {
+  display: none;
+}
+
 .admin-sidebar-footer {
   padding-top: 16px;
   border-top: 1px solid var(--admin-border);

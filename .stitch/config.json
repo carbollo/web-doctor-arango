@@ -1,0 +1,9 @@
+{
+  "projectId": "pending-stitch-mcp",
+  "projectName": "web-doctor-arango",
+  "screens": {
+    "admin-dashboard": "implemented-locally"
+  },
+  "lastSyncedAt": "2026-05-26T00:00:00Z",
+  "note": "Stitch MCP no disponible en el workspace; UI implementada segun brief y tokens del sitio. Sincronizar con Stitch cuando el MCP este activo."
+}

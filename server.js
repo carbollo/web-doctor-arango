@@ -132,6 +132,60 @@ app.get("/api/posts", async (req, res) => {
   res.json(result.rows);
 });
 
+app.get("/api/admin/posts", requireApiKey, async (req, res) => {
+  if (!dbReady) {
+    return res.status(503).json({ error: "Base de datos no disponible." });
+  }
+
+  const status = req.query.status || "all";
+  const q = String(req.query.q || "").trim();
+  const conditions = [];
+  const params = [];
+
+  if (status === "published") {
+    conditions.push("is_published = TRUE");
+  } else if (status === "draft") {
+    conditions.push("is_published = FALSE");
+  }
+
+  if (q) {
+    params.push(`%${q}%`);
+    conditions.push(
+      `(title ILIKE $${params.length} OR slug ILIKE $${params.length})`
+    );
+  }
+
+  const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
+
+  const result = await pool.query(
+    `SELECT id, title, slug, excerpt, image_url, published_at, is_published, created_at
+     FROM posts
+     ${where}
+     ORDER BY published_at DESC, id DESC`,
+    params
+  );
+  res.json(result.rows);
+});
+
+app.get("/api/admin/posts/:id", requireApiKey, async (req, res) => {
+  if (!dbReady) {
+    return res.status(503).json({ error: "Base de datos no disponible." });
+  }
+  const id = parseInt(req.params.id, 10);
+  if (!id) {
+    return res.status(400).json({ error: "ID invalido." });
+  }
+  const result = await pool.query(
+    `SELECT id, title, slug, excerpt, content, image_url, published_at, is_published, created_at
+     FROM posts WHERE id = $1 LIMIT 1`,
+    [id]
+  );
+  if (!result.rows.length) {
+    return res.status(404).json({ error: "Post no encontrado." });
+  }
+  res.json(result.rows[0]);
+});
+
 app.get("/api/posts/:slug", async (req, res) => {
   if (!dbReady) {
     return res.status(503).json({ error: "Base de datos no disponible." });

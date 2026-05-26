@@ -40,21 +40,41 @@ En el **servicio web** (no solo en PostgreSQL), configura:
 | `ADMIN_API_KEY` | Clave secreta para publicar desde `/admin` (cabecera `x-api-key`). |
 | `PORT` | Railway la inyecta automáticamente. |
 
-## Publicar entradas
+## Panel de administración (`/admin`)
+
+El panel tiene tres apartados:
+
+| Apartado | Función |
+|----------|---------|
+| **Historial** | Lista todas las entradas (publicadas y borradores), buscar, filtrar, editar y eliminar |
+| **Nuevo post** | Crear entrada o editar una existente (mismo formulario) |
+| **Ajustes** | Guardar la API key en la sesión del navegador y ver estado de la base de datos |
+
+### Flujo recomendado
 
 1. Despliega con `DATABASE_URL` y `ADMIN_API_KEY` configuradas.
 2. Abre `https://tu-dominio/admin`.
-3. Pega la misma `ADMIN_API_KEY`, rellena el formulario y pulsa **Publicar**.
-4. La entrada aparece en `/blog` y en la sección de novedades de la home (últimas 3).
+3. Ve a **Ajustes**, pega `ADMIN_API_KEY` y pulsa **Guardar clave**.
+4. En **Historial** gestiona entradas existentes o **Nueva entrada** para publicar.
+5. Las entradas publicadas aparecen en `/blog` y en la home (últimas 3).
+
+Design system del admin: [`.stitch/DESIGN.md`](.stitch/DESIGN.md).
 
 ## API REST
 
-- `GET /api/posts` — listado (`?limit=3` para la home)
-- `GET /api/posts/:slug` — detalle
-- `POST /api/posts` — crear (header `x-api-key`)
-- `PUT /api/posts/:id` — editar (header `x-api-key`)
-- `DELETE /api/posts/:id` — borrar (header `x-api-key`)
+### Pública (sin API key)
+
+- `GET /api/posts` — listado publicado (`?limit=3` para la home)
+- `GET /api/posts/:slug` — detalle publicado
 - `GET /api/health` — estado (`db: true` si PostgreSQL está conectado)
+
+### Administración (header `x-api-key`)
+
+- `GET /api/admin/posts` — todas las entradas (`?status=published|draft|all`, `?q=texto`)
+- `GET /api/admin/posts/:id` — detalle completo para edición
+- `POST /api/posts` — crear
+- `PUT /api/posts/:id` — editar
+- `DELETE /api/posts/:id` — eliminar
 
 Al primer arranque con base de datos vacía se insertan 3 posts de ejemplo (mismos títulos que la home anterior).
 

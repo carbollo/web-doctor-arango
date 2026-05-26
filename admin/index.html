@@ -3,81 +3,164 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Publicar en el blog — DR Arango</title>
+	<title>Panel del blog — DR Arango</title>
 	<link rel="icon" type="image/svg+xml" href="../assets/images/fav-icon/icon.svg">
-	<link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="../style.css" type="text/css" media="all" />
-	<style>
-		.admin-page { max-width: 720px; margin: 48px auto; padding: 0 20px 80px; }
-		.admin-page h1 { font-size: 28px; margin-bottom: 8px; }
-		.admin-page p.lead { color: #555; margin-bottom: 24px; }
-		.admin-form label { display: block; font-weight: 600; margin: 12px 0 6px; }
-		.admin-form input[type="text"],
-		.admin-form input[type="password"],
-		.admin-form input[type="datetime-local"],
-		.admin-form textarea {
-			width: 100%;
-			border: 1px solid #ddd;
-			border-radius: 6px;
-			padding: 10px 12px;
-		}
-		.admin-form textarea { min-height: 120px; }
-		.admin-form .checkbox-row { margin-top: 12px; }
-		.admin-form button {
-			margin-top: 20px;
-			background: #0d6efd;
-			color: #fff;
-			border: 0;
-			padding: 12px 24px;
-			border-radius: 6px;
-			cursor: pointer;
-		}
-		.admin-status { margin-top: 16px; }
-		.admin-status.error { color: #b42318; }
-		.admin-status.success { color: #027a48; }
-		.admin-hint { font-size: 14px; color: #666; }
-	</style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="../assets/css/admin-dashboard.css" type="text/css" media="all" />
 </head>
-<body>
+<body class="admin-body">
 
-<div class="admin-page">
-	<h1>Publicar entrada</h1>
-	<p class="lead">Panel interno. Necesitas la variable <code>ADMIN_API_KEY</code> configurada en Railway.</p>
+<div class="admin-overlay" id="admin-overlay" aria-hidden="true"></div>
 
-	<form id="blog-admin-form" class="admin-form">
-		<label for="admin-api-key">API key (ADMIN_API_KEY)</label>
-		<input type="password" id="admin-api-key" name="api_key" autocomplete="off" required>
+<div class="admin-app">
+	<aside class="admin-sidebar" id="admin-sidebar">
+		<div class="admin-brand">
+			<i class="bi bi-heart-pulse-fill" aria-hidden="true"></i>
+			<div>
+				<span>DR Arango</span>
+				<small>Panel del blog</small>
+			</div>
+		</div>
+		<ul class="admin-nav" role="tablist">
+			<li>
+				<button type="button" class="active" data-panel="historial" role="tab" aria-selected="true">
+					<i class="bi bi-journal-text" aria-hidden="true"></i>
+					Historial
+				</button>
+			</li>
+			<li>
+				<button type="button" data-panel="nuevo" role="tab" aria-selected="false">
+					<i class="bi bi-plus-circle" aria-hidden="true"></i>
+					Nuevo post
+				</button>
+			</li>
+			<li>
+				<button type="button" data-panel="ajustes" role="tab" aria-selected="false">
+					<i class="bi bi-gear" aria-hidden="true"></i>
+					Ajustes
+				</button>
+			</li>
+		</ul>
+		<div class="admin-sidebar-footer">
+			<a href="/blog/" target="_blank" rel="noopener">Ver blog publico</a><br>
+			<a href="/">Volver al inicio</a>
+		</div>
+	</aside>
 
-		<label for="post-title">Titulo</label>
-		<input type="text" id="post-title" required>
-
-		<label for="post-slug">Slug (URL)</label>
-		<input type="text" id="post-slug" placeholder="mi-entrada-de-blog">
-		<p class="admin-hint">Se genera automaticamente desde el titulo si no lo editas.</p>
-
-		<label for="post-excerpt">Resumen</label>
-		<textarea id="post-excerpt" rows="3"></textarea>
-
-		<label for="post-content">Contenido (HTML permitido)</label>
-		<textarea id="post-content" rows="10" required></textarea>
-
-		<label for="post-image">URL de imagen</label>
-		<input type="text" id="post-image" value="assets/images/blog1.jpg">
-
-		<label for="post-date">Fecha de publicacion (opcional)</label>
-		<input type="datetime-local" id="post-date">
-
-		<div class="checkbox-row">
-			<label><input type="checkbox" id="post-published" checked> Publicado (visible en la web)</label>
+	<main class="admin-main">
+		<div class="admin-topbar">
+			<button type="button" class="admin-menu-toggle" id="admin-menu-toggle" aria-label="Abrir menu">
+				<i class="bi bi-list"></i>
+			</button>
+			<span class="admin-brand"><i class="bi bi-heart-pulse-fill"></i> DR Arango</span>
 		</div>
 
-		<button type="submit">Publicar</button>
-		<div id="admin-status" class="admin-status" role="status"></div>
-	</form>
+		<section class="admin-panel active" id="panel-historial" role="tabpanel">
+			<div class="admin-panel-header">
+				<h1>Historial de entradas</h1>
+				<p>Gestiona, edita o elimina las publicaciones del blog.</p>
+			</div>
+			<div class="admin-card">
+				<div class="admin-toolbar">
+					<input type="search" id="history-search" placeholder="Buscar por titulo o slug..." aria-label="Buscar">
+					<select id="history-status" aria-label="Filtrar por estado">
+						<option value="all">Todos</option>
+						<option value="published">Publicados</option>
+						<option value="draft">Borradores</option>
+					</select>
+					<button type="button" class="admin-btn admin-btn-secondary" id="history-refresh">
+						<i class="bi bi-arrow-clockwise"></i> Actualizar
+					</button>
+					<button type="button" class="admin-btn admin-btn-primary" id="history-new-btn">
+						<i class="bi bi-plus-lg"></i> Nueva entrada
+					</button>
+				</div>
+				<div id="history-content">
+					<div class="admin-loading">Cargando entradas...</div>
+				</div>
+			</div>
+		</section>
 
-	<p class="admin-hint" style="margin-top:32px;"><a href="/blog/">Ver blog publico</a> · <a href="/">Volver al inicio</a></p>
+		<section class="admin-panel" id="panel-nuevo" role="tabpanel">
+			<div class="admin-panel-header">
+				<h1 id="editor-title">Nueva entrada</h1>
+				<p id="editor-subtitle">Crea o edita una publicacion para el blog.</p>
+			</div>
+			<div class="admin-card">
+				<form id="blog-admin-form" class="admin-form">
+					<input type="hidden" id="post-id" value="">
+
+					<label for="post-title">Titulo</label>
+					<input type="text" id="post-title" required>
+
+					<label for="post-slug">Slug (URL)</label>
+					<input type="text" id="post-slug" placeholder="mi-entrada-de-blog">
+					<p class="admin-hint">Se genera automaticamente desde el titulo si no lo editas.</p>
+
+					<label for="post-excerpt">Resumen</label>
+					<textarea id="post-excerpt" rows="3"></textarea>
+
+					<label for="post-content">Contenido (HTML permitido)</label>
+					<textarea id="post-content" rows="12" required></textarea>
+
+					<label for="post-image">URL de imagen</label>
+					<input type="text" id="post-image" value="assets/images/blog1.jpg">
+
+					<label for="post-date">Fecha de publicacion (opcional)</label>
+					<input type="datetime-local" id="post-date">
+
+					<div class="checkbox-row">
+						<input type="checkbox" id="post-published" checked>
+						<label for="post-published">Publicado (visible en la web)</label>
+					</div>
+
+					<div class="admin-form-actions">
+						<button type="submit" class="admin-btn admin-btn-primary" id="post-submit-btn">
+							<i class="bi bi-send"></i> Publicar
+						</button>
+						<button type="button" class="admin-btn admin-btn-secondary" id="post-cancel-edit" hidden>
+							Cancelar edicion
+						</button>
+						<a href="#" class="admin-btn admin-btn-secondary" id="post-preview-link" target="_blank" rel="noopener" hidden>
+							<i class="bi bi-box-arrow-up-right"></i> Ver en blog
+						</a>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<section class="admin-panel" id="panel-ajustes" role="tabpanel">
+			<div class="admin-panel-header">
+				<h1>Ajustes</h1>
+				<p>Conexion con el servidor y clave de administracion.</p>
+			</div>
+			<div class="admin-card">
+				<div id="db-status" class="admin-status-row warn">
+					<i class="bi bi-hourglass-split"></i>
+					<span>Comprobando conexion...</span>
+				</div>
+
+				<form id="settings-form" class="admin-form">
+					<label for="admin-api-key">API key (ADMIN_API_KEY)</label>
+					<input type="password" id="admin-api-key" autocomplete="off" placeholder="Pega la clave de Railway">
+					<p class="admin-hint">Se guarda en esta sesion del navegador (sessionStorage). No la compartas.</p>
+
+					<div class="admin-form-actions">
+						<button type="submit" class="admin-btn admin-btn-primary">
+							<i class="bi bi-shield-lock"></i> Guardar clave
+						</button>
+						<button type="button" class="admin-btn admin-btn-secondary" id="settings-clear-key">
+							Borrar clave guardada
+						</button>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
 </div>
 
-<script src="../assets/js/blog-admin.js"></script>
+<div class="admin-toast" id="admin-toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/js/admin-dashboard.js"></script>
 </body>
 </html>

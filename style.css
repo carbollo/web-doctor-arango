@@ -3937,6 +3937,14 @@ p.description {
     margin-bottom: 15px;
 }
 
+.blog-details-subtitle {
+    font-size: 18px;
+    color: #646464;
+    line-height: 1.5;
+    margin: 0 0 20px;
+    font-weight: 400;
+}
+
 .blog-details-thumb img {
     width: 100%;
     border-radius: 5px;

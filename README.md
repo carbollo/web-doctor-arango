@@ -59,7 +59,7 @@ Al entrar, el panel está **bloqueado**: solo puedes usar **Ajustes** hasta vali
 2. Abre `https://tu-dominio/admin`.
 3. En **Ajustes**, pega `ADMIN_API_KEY` y pulsa **Validar y entrar**.
 4. Si la clave es correcta, se desbloquean Historial y Nuevo post.
-5. Al recargar la página, la clave guardada en `sessionStorage` se **revalida** en el servidor antes de desbloquear.
+5. La sesión **no se guarda** al recargar ni al abrir `/admin` de nuevo: hay que validar la API key cada vez.
 
 Design system del admin: [`.stitch/DESIGN.md`](.stitch/DESIGN.md).
 

@@ -1,7 +1,8 @@
 (function () {
   "use strict";
 
-  var STORAGE_KEY = "dr_arango_admin_api_key";
+  var LEGACY_STORAGE_KEY = "dr_arango_admin_api_key";
+  var sessionApiKey = "";
   var postsCache = [];
   var isUnlocked = false;
 
@@ -29,16 +30,20 @@
   var logoutBtn = document.getElementById("settings-logout-btn");
 
   function getApiKey() {
-    return sessionStorage.getItem(STORAGE_KEY) || "";
+    return sessionApiKey;
   }
 
   function setApiKey(key) {
-    if (key) {
-      sessionStorage.setItem(STORAGE_KEY, key);
-    } else {
-      sessionStorage.removeItem(STORAGE_KEY);
+    sessionApiKey = key ? String(key) : "";
+    apiKeyInput.value = sessionApiKey;
+  }
+
+  function clearPersistedSession() {
+    try {
+      sessionStorage.removeItem(LEGACY_STORAGE_KEY);
+    } catch (_err) {
+      /* ignore */
     }
-    apiKeyInput.value = key || "";
   }
 
   function showToast(message, type) {
@@ -534,33 +539,10 @@
     showToast("Sesion cerrada.", "success");
   });
 
-  function tryRestoreSession() {
-    var saved = getApiKey();
-    if (!saved) {
-      lockAdmin();
-      historyContent.innerHTML =
-        '<div class="admin-empty">Valida tu API key en Ajustes para empezar.</div>';
-      return;
-    }
-    apiKeyInput.value = saved;
-    setAuthBanner("Comprobando sesion guardada...", "");
-    verifyApiKey(saved)
-      .then(function (result) {
-        if (!result.ok) {
-          setApiKey("");
-          lockAdmin("La clave guardada ya no es valida.");
-          return;
-        }
-        unlockAdmin();
-        switchPanel("historial");
-        loadHistory();
-      })
-      .catch(function () {
-        lockAdmin("No se pudo verificar la sesion. Valida de nuevo.");
-      });
-  }
-
+  clearPersistedSession();
   loadHealth();
   switchPanel("ajustes", true);
-  tryRestoreSession();
+  lockAdmin();
+  historyContent.innerHTML =
+    '<div class="admin-empty">Valida tu API key en Ajustes para empezar.</div>';
 })();

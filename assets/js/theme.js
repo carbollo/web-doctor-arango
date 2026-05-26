@@ -1,5 +1,8 @@
 (function($) {
     'use strict';
+
+    // Ocultar loader de entrada lo antes posible
+    $('body').addClass('loaded');
 	
 	// Mobile Menu
     $('.mobile-menu nav').meanmenu({
@@ -12,12 +15,30 @@
     // sticky
     var wind = $(window);
     var sticky = $('#sticky-header');
-    wind.on('scroll', function () {
+    var stickyActive = false;
+    wind.on('scroll resize', function () {
         var scroll = wind.scrollTop();
-        if (scroll < 100) {
+        var isDesktop = wind.width() > 991;
+
+        if (!isDesktop) {
             sticky.removeClass('sticky');
+            $('body').css('padding-top', '');
+            stickyActive = false;
+            return;
+        }
+
+        if (scroll < 100) {
+            if (stickyActive) {
+                sticky.removeClass('sticky');
+                $('body').css('padding-top', '');
+                stickyActive = false;
+            }
         } else {
-            sticky.addClass('sticky');
+            if (!stickyActive) {
+                sticky.addClass('sticky');
+                $('body').css('padding-top', sticky.outerHeight() + 'px');
+                stickyActive = true;
+            }
         }
     });
      //Header Search
@@ -30,14 +51,12 @@
         });
     }
     // animate
-    new WOW().init();
-
-    // Loder  //
-    $(function () {
-      $('body').addClass('loaded');
-    });
+    if (typeof WOW !== 'undefined') {
+        new WOW().init();
+    }
 
      // Case Study Active
+    if ($('.team_list').length) {
     $('.team_list').owlCarousel({
         loop: true,
         autoplay: true,
@@ -62,9 +81,11 @@
                 items: 2
             }
         }
-    }) 
+    });
+    }
 
     // testimonial Active
+    if ($('.testimonial-list').length) {
     $('.testimonial-list').owlCarousel({
         loop: true,
         autoplay: false,
@@ -89,9 +110,11 @@
                 items: 1
             }
         }
-    })  
+    });
+    }
 
     // testimonial Active
+    if ($('.pd_list').length) {
     $('.pd_list').owlCarousel({
         loop: true,
         autoplay: true,
@@ -120,9 +143,11 @@
                 items: 2
             }
         }
-    })  
+    });
+    }
 
     // Brand list
+    if ($('.brand-list').length) {
     $('.brand-list').owlCarousel({
         loop: true,
         autoplay: true,
@@ -150,20 +175,26 @@
                 items: 5
             }
         }
-    })  
+    });
+    }
 
 	/*---------------------
     WOW active js 
     --------------------- */
-    new WOW().init();
+    if (typeof WOW !== 'undefined') {
+        new WOW().init();
+    }
 
     // counterUp
+    if ($('.counter').length && $.fn.counterUp) {
     $('.counter').counterUp({
         delay: 10,
         time: 1000
     });
+    }
 
     /* Portfolio Isotope  */
+    if ($('.image_load').length && $.fn.imagesLoaded) {
     $('.image_load').imagesLoaded(function() {
 
         if ($.fn.isotope) {
@@ -202,9 +233,11 @@
         };
 
     });
+    }
 	
 	 // Venubox
 
+    if ($('.venobox').length && $.fn.venobox) {
     $('.venobox').venobox({
 
         numeratio: true,
@@ -212,6 +245,7 @@
         infinigall: true
 
     });
+    }
 	/*--------------------------
      scrollUp
     ---------------------------- */

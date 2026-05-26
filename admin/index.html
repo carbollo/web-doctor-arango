@@ -93,15 +93,17 @@
 					<label for="post-title">Titulo</label>
 					<input type="text" id="post-title" required>
 
+					<label for="post-subtitle">Subtitulo</label>
+					<input type="text" id="post-subtitle" placeholder="Frase breve que resume la entrada">
+					<p class="admin-hint">Se muestra debajo del titulo en la pagina del articulo.</p>
+
 					<label for="post-slug">Slug (URL)</label>
 					<input type="text" id="post-slug" placeholder="mi-entrada-de-blog">
 					<p class="admin-hint">Se genera automaticamente desde el titulo si no lo editas.</p>
 
-					<label for="post-excerpt">Resumen</label>
-					<textarea id="post-excerpt" rows="3"></textarea>
-
-					<label for="post-content">Contenido (HTML permitido)</label>
-					<textarea id="post-content" rows="12" required></textarea>
+					<label for="post-body">Contenido</label>
+					<textarea id="post-body" rows="12" required placeholder="Escribe el texto del articulo. Separa parrafos con una linea en blanco."></textarea>
+					<p class="admin-hint">Texto normal, sin HTML. Cada parrafo va separado por una linea vacia.</p>
 
 					<label for="post-image">URL de imagen</label>
 					<input type="text" id="post-image" value="assets/images/blog1.jpg">
@@ -161,6 +163,7 @@
 
 <div class="admin-toast" id="admin-toast" role="status" aria-live="polite"></div>
 
+<script src="../assets/js/blog-api.js"></script>
 <script src="../assets/js/admin-dashboard.js"></script>
 </body>
 </html>

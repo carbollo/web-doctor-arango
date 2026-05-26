@@ -78,6 +78,16 @@ Design system del admin: [`.stitch/DESIGN.md`](.stitch/DESIGN.md).
 
 Al primer arranque con base de datos vacía se insertan 3 posts de ejemplo (mismos títulos que la home anterior).
 
+## Contenido de las entradas
+
+En el admin cada post se escribe con tres campos:
+
+- **Título** — cabecera del artículo
+- **Subtítulo** — frase breve (se guarda en `excerpt` y aparece bajo el título en `/blog/:slug`)
+- **Contenido** — texto plano; separa párrafos con una línea en blanco (se convierte automáticamente a HTML al publicar)
+
+No hace falta escribir HTML. Las entradas antiguas con HTML siguen mostrándose correctamente.
+
 ## Imágenes
 
 En esta versión la imagen del post es una ruta o URL (`assets/images/blog1.jpg`). La subida de archivos al servidor requeriría almacenamiento externo (S3/R2) en una fase posterior.

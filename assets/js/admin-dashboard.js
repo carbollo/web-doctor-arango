@@ -309,8 +309,10 @@
         titleInput.value = post.title;
         slugInput.value = post.slug;
         slugInput.dataset.manual = "1";
-        document.getElementById("post-excerpt").value = post.excerpt || "";
-        document.getElementById("post-content").value = post.content || "";
+        document.getElementById("post-subtitle").value = post.excerpt || "";
+        document.getElementById("post-body").value = window.BlogApi
+          ? BlogApi.contentToPlainText(post.content)
+          : post.content || "";
         document.getElementById("post-image").value =
           post.image_url || "assets/images/blog1.jpg";
         document.getElementById("post-date").value = toDatetimeLocalValue(
@@ -381,8 +383,8 @@
     var payload = {
       title: titleInput.value.trim(),
       slug: slugInput.value.trim(),
-      excerpt: document.getElementById("post-excerpt").value.trim(),
-      content: document.getElementById("post-content").value.trim(),
+      excerpt: document.getElementById("post-subtitle").value.trim(),
+      content: document.getElementById("post-body").value.trim(),
       image_url: document.getElementById("post-image").value.trim(),
       published_at: document.getElementById("post-date").value || null,
       is_published: document.getElementById("post-published").checked,

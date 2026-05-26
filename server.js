@@ -72,7 +72,7 @@ async function initDb() {
         excerpt:
           "Recomendaciones practicas para cuidar tu salud cardiovascular y prevenir complicaciones.",
         content:
-          "<p>La prevencion es la base de una buena salud. En esta guia repasamos habitos diarios, revisiones medicas y senales de alerta que conviene no ignorar.</p><p>Consulta con tu especialista para un plan personalizado segun tu edad y antecedentes.</p>",
+          "La prevencion es la base de una buena salud. En esta guia repasamos habitos diarios, revisiones medicas y senales de alerta que conviene no ignorar.\n\nConsulta con tu especialista para un plan personalizado segun tu edad y antecedentes.",
         image_url: "assets/images/blog1.jpg",
       },
       {
@@ -81,7 +81,7 @@ async function initDb() {
         excerpt:
           "Pequenos cambios en alimentacion, actividad fisica y descanso que mejoran tu calidad de vida.",
         content:
-          "<p>El bienestar integral combina salud fisica y mental. Prioriza el movimiento regular, hidratacion y pausas activas durante el dia.</p><p>Un seguimiento medico periodico ayuda a mantener objetivos realistas y sostenibles.</p>",
+          "El bienestar integral combina salud fisica y mental. Prioriza el movimiento regular, hidratacion y pausas activas durante el dia.\n\nUn seguimiento medico periodico ayuda a mantener objetivos realistas y sostenibles.",
         image_url: "assets/images/blog2.jpg",
       },
       {
@@ -90,7 +90,7 @@ async function initDb() {
         excerpt:
           "Claves sencillas para construir habitos saludables de forma progresiva y constante.",
         content:
-          "<p>No se trata de cambios drasticos de un dia para otro. La constancia en habitos saludables genera resultados duraderos.</p><p>Adapta cada recomendacion a tu contexto y consulta ante cualquier sintoma persistente.</p>",
+          "No se trata de cambios drasticos de un dia para otro. La constancia en habitos saludables genera resultados duraderos.\n\nAdapta cada recomendacion a tu contexto y consulta ante cualquier sintoma persistente.",
         image_url: "assets/images/blog3.jpg",
       },
     ];

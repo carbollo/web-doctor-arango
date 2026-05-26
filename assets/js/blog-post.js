@@ -26,6 +26,13 @@
         image = "../" + image;
       }
 
+      var subtitleHtml = post.excerpt
+        ? '<p class="blog-details-subtitle">' +
+          BlogApi.escapeHtml(post.excerpt) +
+          "</p>"
+        : "";
+      var bodyHtml = BlogApi.plainTextToHtml(post.content);
+
       root.innerHTML =
         '<div class="blog-details-main">' +
         '<div class="blog-details-meta"><span><i class="bi bi-calendar3"></i> ' +
@@ -33,14 +40,16 @@
         "</span></div>" +
         '<div class="blog-details-content"><h2>' +
         BlogApi.escapeHtml(post.title) +
-        "</h2></div>" +
+        "</h2>" +
+        subtitleHtml +
+        "</div>" +
         '<div class="blog-details-thumb"><img src="' +
         BlogApi.escapeHtml(image) +
         '" alt="' +
         BlogApi.escapeHtml(post.title) +
         '"></div>' +
         '<div class="blog-details-des">' +
-        post.content +
+        bodyHtml +
         "</div>" +
         '<div class="blog-details-button"><a class="active" href="/blog/">Volver al blog</a></div>' +
         "</div>";

@@ -347,10 +347,9 @@ body.admin-body {
   resize: vertical;
 }
 
-.admin-form textarea#post-content {
-  min-height: 200px;
-  font-family: ui-monospace, monospace;
-  font-size: 0.85rem;
+.admin-form textarea#post-body {
+  min-height: 220px;
+  line-height: 1.6;
 }
 
 .admin-form .checkbox-row {

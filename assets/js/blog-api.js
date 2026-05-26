@@ -21,6 +21,49 @@
       .replace(/'/g, "&#039;");
   }
 
+  function isLegacyHtmlContent(text) {
+    var value = String(text || "").trim();
+    return /^</.test(value) || /<p[\s>]/i.test(value);
+  }
+
+  function contentToPlainText(text) {
+    var value = String(text || "").trim();
+    if (!value) return "";
+    if (!isLegacyHtmlContent(value)) return value;
+    var div = document.createElement("div");
+    div.innerHTML = value;
+    var blocks = div.querySelectorAll("p, li, h1, h2, h3, h4");
+    if (blocks.length) {
+      return Array.prototype.map
+        .call(blocks, function (el) {
+          return (el.textContent || "").trim();
+        })
+        .filter(Boolean)
+        .join("\n\n");
+    }
+    return (div.textContent || "").trim();
+  }
+
+  function plainTextToHtml(text) {
+    var value = String(text || "").trim();
+    if (!value) return "";
+    if (isLegacyHtmlContent(value)) return value;
+    return value
+      .split(/\n\s*\n/)
+      .map(function (block) {
+        return block.trim();
+      })
+      .filter(Boolean)
+      .map(function (block) {
+        return (
+          "<p>" +
+          escapeHtml(block.replace(/\n+/g, " ")) +
+          "</p>"
+        );
+      })
+      .join("");
+  }
+
   function postCardHtml(post, assetPrefix) {
     var prefix = assetPrefix || "";
     var image = post.image_url || "assets/images/blog1.jpg";
@@ -77,6 +120,8 @@
   window.BlogApi = {
     formatDate: formatDate,
     escapeHtml: escapeHtml,
+    contentToPlainText: contentToPlainText,
+    plainTextToHtml: plainTextToHtml,
     postCardHtml: postCardHtml,
     fetchPosts: fetchPosts,
     fetchPostBySlug: fetchPostBySlug,

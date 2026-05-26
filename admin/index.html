@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="es-ES">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Publicar en el blog — DR Arango</title>
+	<link rel="icon" type="image/svg+xml" href="../assets/images/fav-icon/icon.svg">
+	<link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../style.css" type="text/css" media="all" />
+	<style>
+		.admin-page { max-width: 720px; margin: 48px auto; padding: 0 20px 80px; }
+		.admin-page h1 { font-size: 28px; margin-bottom: 8px; }
+		.admin-page p.lead { color: #555; margin-bottom: 24px; }
+		.admin-form label { display: block; font-weight: 600; margin: 12px 0 6px; }
+		.admin-form input[type="text"],
+		.admin-form input[type="password"],
+		.admin-form input[type="datetime-local"],
+		.admin-form textarea {
+			width: 100%;
+			border: 1px solid #ddd;
+			border-radius: 6px;
+			padding: 10px 12px;
+		}
+		.admin-form textarea { min-height: 120px; }
+		.admin-form .checkbox-row { margin-top: 12px; }
+		.admin-form button {
+			margin-top: 20px;
+			background: #0d6efd;
+			color: #fff;
+			border: 0;
+			padding: 12px 24px;
+			border-radius: 6px;
+			cursor: pointer;
+		}
+		.admin-status { margin-top: 16px; }
+		.admin-status.error { color: #b42318; }
+		.admin-status.success { color: #027a48; }
+		.admin-hint { font-size: 14px; color: #666; }
+	</style>
+</head>
+<body>
+
+<div class="admin-page">
+	<h1>Publicar entrada</h1>
+	<p class="lead">Panel interno. Necesitas la variable <code>ADMIN_API_KEY</code> configurada en Railway.</p>
+
+	<form id="blog-admin-form" class="admin-form">
+		<label for="admin-api-key">API key (ADMIN_API_KEY)</label>
+		<input type="password" id="admin-api-key" name="api_key" autocomplete="off" required>
+
+		<label for="post-title">Titulo</label>
+		<input type="text" id="post-title" required>
+
+		<label for="post-slug">Slug (URL)</label>
+		<input type="text" id="post-slug" placeholder="mi-entrada-de-blog">
+		<p class="admin-hint">Se genera automaticamente desde el titulo si no lo editas.</p>
+
+		<label for="post-excerpt">Resumen</label>
+		<textarea id="post-excerpt" rows="3"></textarea>
+
+		<label for="post-content">Contenido (HTML permitido)</label>
+		<textarea id="post-content" rows="10" required></textarea>
+
+		<label for="post-image">URL de imagen</label>
+		<input type="text" id="post-image" value="assets/images/blog1.jpg">
+
+		<label for="post-date">Fecha de publicacion (opcional)</label>
+		<input type="datetime-local" id="post-date">
+
+		<div class="checkbox-row">
+			<label><input type="checkbox" id="post-published" checked> Publicado (visible en la web)</label>
+		</div>
+
+		<button type="submit">Publicar</button>
+		<div id="admin-status" class="admin-status" role="status"></div>
+	</form>
+
+	<p class="admin-hint" style="margin-top:32px;"><a href="/blog/">Ver blog publico</a> · <a href="/">Volver al inicio</a></p>
+</div>
+
+<script src="../assets/js/blog-admin.js"></script>
+</body>
+</html>

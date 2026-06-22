@@ -5,6 +5,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const compression = require("compression");
 const rateLimit = require("express-rate-limit");
 const { Pool } = require("pg");
 
@@ -196,6 +197,9 @@ app.use(
     crossOriginEmbedderPolicy: false,
   })
 );
+
+// Compresion gzip/brotli para HTML, CSS, JS y demas recursos de texto
+app.use(compression());
 
 app.use(
   cors({
@@ -504,7 +508,26 @@ app.get("/blog/:slug", (req, res, next) => {
   res.sendFile(path.join(ROOT, "blog", "post.html"));
 });
 
-app.use(express.static(ROOT, { index: false }));
+// Estaticos con politica de cache eficiente:
+//  - imagenes/fuentes: cache larga (1 ano) ya que cambian poco
+//  - css/js: 30 dias
+//  - html: revalidar siempre para que los cambios se publiquen al instante
+app.use(
+  express.static(ROOT, {
+    index: false,
+    etag: true,
+    lastModified: true,
+    setHeaders(res, filePath) {
+      if (/\.(?:webp|avif|png|jpe?g|gif|svg|ico|woff2?|ttf|eot)$/i.test(filePath)) {
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      } else if (/\.(?:css|js)$/i.test(filePath)) {
+        res.setHeader("Cache-Control", "public, max-age=2592000");
+      } else if (/\.html?$/i.test(filePath)) {
+        res.setHeader("Cache-Control", "no-cache");
+      }
+    },
+  })
+);
 
 app.get("/", (_req, res) => {
   res.sendFile(path.join(ROOT, "index.html"));

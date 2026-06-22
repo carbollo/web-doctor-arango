@@ -8,46 +8,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Favicon -->
 	<link rel="icon" type="image/svg+xml" href="assets/images/fav-icon/icon.svg">
-	<!-- bootstrap CSS -->
+	<!-- Preconnect a CDNs externos -->
+	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preconnect" href="https://objects-es.cdn-topdoctors.com" crossorigin>
+	<!-- Fuente Roboto (solo pesos usados) -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+	<!-- Preload de la imagen LCP (hero) -->
+	<link rel="preload" as="image" href="assets/images/arango-circulo-1.webp" fetchpriority="high">
+	<!-- bootstrap CSS (sistema de rejilla) -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" media="all" />
-	<!-- carousel CSS -->
-	<link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css" media="all" />	
-	<!-- animate CSS -->
-	<link rel="stylesheet" href="assets/css/animate.css" type="text/css" media="all" />	
-	<!-- animated-text CSS -->
-	<link rel="stylesheet" href="assets/css/animated-text.css" type="text/css" media="all" />	
-	<!-- font-awesome CSS -->
-	<link rel="stylesheet" href="assets/css/all.min.css" type="text/css" media="all" />	
-	<!-- font-flaticon CSS -->
-	<link rel="stylesheet" href="assets/css/flaticon.css" type="text/css" media="all" />	
 	<!-- theme-default CSS -->
-	<link rel="stylesheet" href="assets/css/theme-default.css" type="text/css" media="all" />	
-	<!-- meanmenu CSS -->
-	<link rel="stylesheet" href="assets/css/meanmenu.min.css" type="text/css" media="all" />	
+	<link rel="stylesheet" href="assets/css/theme-default.css" type="text/css" media="all" />
+	<!-- meanmenu CSS (menu movil) -->
+	<link rel="stylesheet" href="assets/css/meanmenu.min.css" type="text/css" media="all" />
 	<!-- Main Style CSS -->
-	<link rel="stylesheet"  href="style.css" type="text/css" media="all" />
-	<!-- transitions CSS -->
-	<link rel="stylesheet" href="assets/css/owl.transitions.css" type="text/css" media="all" />
-	<!-- venobox CSS -->
-	<link rel="stylesheet" href="venobox/venobox.css" type="text/css" media="all" />
-	<!--porgress-bar-css-->
-    <link rel="stylesheet" href="assets/css/progresscircle.css" type="text/css" media="all">
+	<link rel="stylesheet" href="style.css" type="text/css" media="all" />
 	<!-- responsive CSS -->
 	<link rel="stylesheet" href="assets/css/responsive.css" type="text/css" media="all" />
-	<!-- modernizr js -->	
-	<script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>	
 	<!-- bootstrap icons -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" media="print" onload="this.media='all'">
+	<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></noscript>
 </head>
 <body>
-
-
-	<!-- loder -->
-	<div class="loader-wrapper">
-		<div class="loader"></div>
-		<div class="loder-section left-section"></div>
-		<div class="loder-section right-section"></div>
-	</div>
 
 
 <!--==================================================-->
@@ -66,8 +50,8 @@
 				<div class="header-menu">
 					<ul class="nav_scroll">
 						<li><a href="#home">Inicio</a></li>
-						<li><a href="#about">Sobre mi</li>
-						<li><a href="#service">Servicios</li>
+						<li><a href="#about">Sobre mi</a></li>
+						<li><a href="#service">Servicios</a></li>
 						<li><a href="/blog">Novedades</a></li>
 						<li><a href="#contact">Contacto</a></li>
 					</ul>
@@ -92,8 +76,8 @@
 		<nav class="header_menu">
 			<ul class="nav_scroll">
 				<li><a href="#home">Inicio</a></li>
-				<li><a href="#about">Sobre mi</li>
-				<li><a href="#service">Servicios</li>
+				<li><a href="#about">Sobre mi</a></li>
+				<li><a href="#service">Servicios</a></li>
 				<li><a href="/blog">Novedades</a></li>
 				<li><a href="#contact">Contacto</a></li>
 			</ul>
@@ -130,23 +114,23 @@
 			<div class="col-lg-6 col-md-12">
 				<div class="hero-main-thumb">
 					<div class="hero-main-imgs">
-				      <img src="assets/images/arango circulo 1.png" alt="Doctor Arango">
+				      <img src="assets/images/arango-circulo-1.webp" alt="Dr. Paulo César Arango, cirujano especialista en várices" width="820" height="1025" fetchpriority="high" decoding="async">
 		    	   </div>
 
 		    	   <div class="hero-single-imgs1 bounce-animate1">
-		    	   		<img src="assets/images/single-imgs1.png" alt="hero signle imgs">
+		    	   		<img src="assets/images/single-imgs1.png" alt="" width="245" height="88" loading="lazy" decoding="async">
 		    	   </div>
 
 		    	    <div class="hero-single-imgs2 bounce-animate1">
-		    	   		<img src="assets/images/single-imgs2.png" alt="hero signle imgs">
+		    	   		<img src="assets/images/single-imgs2.png" alt="" width="250" height="147" loading="lazy" decoding="async">
 		    	   </div>
 
 		    	    <div class="hero-single-imgs3 rotateme">
-		    	   		<img src="assets/images/single-imgs3.png" alt="hero signle imgs">
+		    	   		<img src="assets/images/single-imgs3.png" alt="" width="122" height="122" loading="lazy" decoding="async">
 		    	   </div>
 
 		    	   <div class="hero-single-imgs4 rotateme">
-		    	   		<img src="assets/images/single-imgs4.png" alt="hero signle imgs">
+		    	   		<img src="assets/images/single-imgs4.png" alt="" width="122" height="122" loading="lazy" decoding="async">
 		    	   </div>
 
 				</div>
@@ -154,15 +138,15 @@
 		</div>
 		<!--hero-single-shape-->
 		<div class="hero-single-shape1 dance">
-			<img src="assets/images/single-shape1.png" alt="shape">
-		</div>	
+			<img src="assets/images/single-shape1.png" alt="" width="27" height="31" loading="lazy" decoding="async">
+		</div>
 
 		<div class="hero-single-shape2 rotateme">
-			<img src="assets/images/single-shape2.png" alt="shape">
-		</div>	
+			<img src="assets/images/single-shape2.png" alt="" width="15" height="15" loading="lazy" decoding="async">
+		</div>
 
 		<div class="hero-single-shape3 dance">
-			<img src="assets/images/single-shape3.png" alt="shape">
+			<img src="assets/images/single-shape3.png" alt="" width="19" height="21" loading="lazy" decoding="async">
 		</div>
 	</div>
 </div>
@@ -192,7 +176,7 @@
 			<div class="col-lg-3 col-md-6">
 				<div class="feature-box">
 					<div class="feature-box-iocn">
-						<img src="assets/images/feature-icon1.png" alt="box icon">
+						<img src="assets/images/feature-icon1.png" alt="" width="61" height="65" loading="lazy" decoding="async">
 					</div>
 					<div class="feature-content">
 						<h4>Atencion rapida</h4>
@@ -203,7 +187,7 @@
 			<div class="col-lg-3 col-md-6">
 				<div class="feature-box style-four">
 					<div class="feature-box-iocn">
-						<img src="assets/images/feature-icon2.png" alt="box icon">
+						<img src="assets/images/feature-icon2.png" alt="" width="75" height="65" loading="lazy" decoding="async">
 					</div>
 					<div class="feature-content">
 						<h4>Equipamiento moderno</h4>
@@ -214,7 +198,7 @@
 			<div class="col-lg-3 col-md-6">
 				<div class="feature-box style-three">
 					<div class="feature-box-iocn">
-						<img src="assets/images/feature-icon3.png" alt="box icon">
+						<img src="assets/images/feature-icon3.png" alt="" width="65" height="65" loading="lazy" decoding="async">
 					</div>
 					<div class="feature-content">
 						<h4>Doctor Arango</h4>
@@ -225,7 +209,7 @@
 			<div class="col-lg-3 col-md-6">
 				<div class="feature-box style-four">
 					<div class="feature-box-iocn">
-						<img src="assets/images/feature-icon4.png" alt="box icon">
+						<img src="assets/images/feature-icon4.png" alt="" width="65" height="65" loading="lazy" decoding="async">
 					</div>
 					<div class="feature-content">
 						<h4>Mejor servicio</h4>
@@ -253,15 +237,15 @@
 		<div class="row align-items-center">
 			<div class="col-lg-6 col-md-12">
 				<div class="about-thumb">
-					<img src="assets/images/cuerpo.png" alt="Doctor Arango">
+					<img src="assets/images/cuerpo.webp" alt="Dr. Arango en consulta" width="820" height="1025" loading="lazy" decoding="async">
 					<div class="about-single-imgs dance2 ">
-						<img src="assets/images/about-imgs2.png" alt="single imgs">
+						<img src="assets/images/about-imgs2.png" alt="" width="248" height="248" loading="lazy" decoding="async">
 					</div>
 					<div class="about-counter-shape">
-						<img src="assets/images/about-counter-imgs.png" alt="counter imgs">
+						<img src="assets/images/about-counter-imgs.png" alt="" width="546" height="205" loading="lazy" decoding="async">
 					</div>
 					<div class="about-single-shape bounce-animate1">
-						<img src="assets/images/about-shape.png" alt="shape">
+						<img src="assets/images/about-shape.png" alt="" width="112" height="112" loading="lazy" decoding="async">
 					</div>
 				</div>
 			</div>
@@ -324,12 +308,12 @@
 			</div>
 			<div class="col-lg-6 col-md-12">
 				<div class="appointment-thumb">
-				    <img src="assets/images/appointment-imgs.png" alt="appointment imgs">
+				    <img src="assets/images/appointment-imgs.webp" alt="Cita médica con el Dr. Arango" width="627" height="817" loading="lazy" decoding="async">
 				    <div class="appointment-shape1 dance">
-				    	<img src="assets/images/appointment-shape.png" alt="shape">
+				    	<img src="assets/images/appointment-shape.png" alt="" width="96" height="147" loading="lazy" decoding="async">
 				    </div>
 				    <div class="appointment-shape2 bounce-animate1">
-				    	<img src="assets/images/appotintment-shape2.png" alt="shape">
+				    	<img src="assets/images/appotintment-shape2.png" alt="" width="144" height="164" loading="lazy" decoding="async">
 				    </div>
 			    </div>
 			</div>
@@ -365,7 +349,7 @@
 			<div class="col-lg-4 col-md-6">
 				<div class="single-service-box box-1">
 					<div class="service-box-icon">
-						<img src="assets/images/service-icon1.png" alt="box icon">
+						<img src="assets/images/service-icon1.png" alt="" width="67" height="100" loading="lazy" decoding="async">
 					</div>
 					<div class="service-content">
 						<h4>Cardiologia</h4>
@@ -377,7 +361,7 @@
 			<div class="col-lg-4 col-md-6">
 				<div class="single-service-box box-2">
 					<div class="service-box-icon">
-						<img src="assets/images/service-icon2.png" alt="box icon">
+						<img src="assets/images/service-icon2.png" alt="" width="110" height="98" loading="lazy" decoding="async">
 					</div>
 					<div class="service-content">
 						<h4>Pulmonar</h4>
@@ -389,7 +373,7 @@
 			<div class="col-lg-4 col-md-6">
 				<div class="single-service-box box-3">
 					<div class="service-box-icon">
-						<img src="assets/images/service-icon3.png" alt="box icon">
+						<img src="assets/images/service-icon3.png" alt="" width="100" height="96" loading="lazy" decoding="async">
 					</div>
 					<div class="service-content">
 						<h4>Neurologia</h4>
@@ -410,7 +394,7 @@
 		<div id="topdoctors-es-widget-container-12" style="width:100%; overflow:hidden;"></div>
 	</div>
 </div>
-<script type="text/javascript" src="https://objects-es.cdn-topdoctors.com/static/widgets/main.min.js#type=12&apikey=sXQkKxjQXCj9_m-FF9otRxD1cSewiVA%3D&environment=prod&config=dW5kZWZpbmVk&country=es&storage=https%3A%2F%2Fobjects-es.cdn-topdoctors.com&apiurl=https%3A%2F%2Fwww.topdoctors.es%2Fapi&hostname=https%3A%2F%2Fwww.topdoctors.es"></script>
+<script async type="text/javascript" src="https://objects-es.cdn-topdoctors.com/static/widgets/main.min.js#type=12&apikey=sXQkKxjQXCj9_m-FF9otRxD1cSewiVA%3D&environment=prod&config=dW5kZWZpbmVk&country=es&storage=https%3A%2F%2Fobjects-es.cdn-topdoctors.com&apiurl=https%3A%2F%2Fwww.topdoctors.es%2Fapi&hostname=https%3A%2F%2Fwww.topdoctors.es"></script>
 <div class="topdoctors-opinions-spacer" aria-hidden="true"></div>
 
 
@@ -492,7 +476,7 @@
 			</div>
 			<div class="col-lg-6" style="padding-left: 166px;">
 				<div id="topdoctors-es-widget-container-13" style="max-width: 360px;"></div>
-				<script type="text/javascript" src="https://objects-es.cdn-topdoctors.com/static/widgets/main.min.js#type=13&apikey=FOLXDyB00T5m_HkQSmeO6eOSQuR28_M%3D&environment=prod&config=dW5kZWZpbmVk&country=es&storage=https%3A%2F%2Fobjects-es.cdn-topdoctors.com&apiurl=https%3A%2F%2Fwww.topdoctors.es%2Fapi&hostname=https%3A%2F%2Fwww.topdoctors.es"></script>
+				<script async type="text/javascript" src="https://objects-es.cdn-topdoctors.com/static/widgets/main.min.js#type=13&apikey=FOLXDyB00T5m_HkQSmeO6eOSQuR28_M%3D&environment=prod&config=dW5kZWZpbmVk&country=es&storage=https%3A%2F%2Fobjects-es.cdn-topdoctors.com&apiurl=https%3A%2F%2Fwww.topdoctors.es%2Fapi&hostname=https%3A%2F%2Fwww.topdoctors.es"></script>
 			</div>
 		</div>
 	</div>
@@ -521,12 +505,12 @@
 					<ul>
 						<li>
 							<a href="https://www.instagram.com/dr.pauloarango?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram">
-								<img class="instagram-footer-icon" src="assets/images/instagram-logo.png" alt="Instagram" width="30" height="30" style="width:30px;height:30px;object-fit:contain;">
+								<img class="instagram-footer-icon" src="assets/images/instagram-logo.webp" alt="Instagram" width="30" height="30" loading="lazy" decoding="async" style="width:30px;height:30px;object-fit:contain;">
 							</a>
 						</li>
 						<li>
 							<a href="https://www.tiktok.com/@drpauloarango" aria-label="TikTok">
-								<img class="tiktok-footer-icon" src="assets/images/tiktok-logo.png" alt="TikTok" width="50" height="50" style="width:50px;height:50px;object-fit:contain;">
+								<img class="tiktok-footer-icon" src="assets/images/tiktok-logo.webp" alt="TikTok" width="50" height="50" loading="lazy" decoding="async" style="width:50px;height:50px;object-fit:contain;">
 							</a>
 						</li>
 					</ul>
@@ -563,7 +547,7 @@
 						</ul>
 					</div>
 				   <div class="footer-single-shape dance">
-						<img src="assets/images/footer-shape1.png" alt="shape imgs">
+						<img src="assets/images/footer-shape1.png" alt="" width="357" height="357" loading="lazy" decoding="async">
 					</div>
 				</div>
 			</div>			
@@ -602,10 +586,10 @@
 				</div>
 			</div>
 			<div class="footer-shape-2 bounce-animate1">
-				<img src="assets/images/footer-shape2.png" alt="shape imgs">
-			</div>			
+				<img src="assets/images/footer-shape2.png" alt="" width="208" height="334" loading="lazy" decoding="async">
+			</div>
 			<div class="footer-shape-3 bounce-animate1">
-				<img src="assets/images/footer-shape3.png" alt="shape imgs">
+				<img src="assets/images/footer-shape3.png" alt="" width="208" height="334" loading="lazy" decoding="async">
 			</div>
 		</div>
 		<div class="row">
@@ -643,43 +627,18 @@
 <!--==================================================-->
 
 	
-	<!-- jquery js -->	
-	<script src="assets/js/vendor/jquery-3.6.2.min.js"></script>
-	<!-- bootstrap js -->	
-	<script src="assets/js/bootstrap.min.js"></script>
-	<!-- carousel js -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- counterup js -->
-	<script src="assets/js/jquery.counterup.min.js"></script>
-	<!-- waypoints js -->
-	<script src="assets/js/waypoints.min.js"></script>
-	<!-- wow js -->
-	<script src="assets/js/wow.js"></script>
-	<!-- imagesloaded js -->
-	<script src="assets/js/imagesloaded.pkgd.min.js"></script>
-	<!-- venobox js -->
-	<script src="venobox/venobox.js"></script>
-	<!--  animated-text js -->	
-	<script src="assets/js/animated-text.js"></script>
-	<!-- venobox min js -->
-	<script src="venobox/venobox.min.js"></script>
-	<!-- isotope js -->
-	<script src="assets/js/isotope.pkgd.min.js"></script>
-	<!-- jquery meanmenu js -->	
-	<script src="assets/js/jquery.meanmenu.js"></script>
-	<!-- jquery scrollup js -->	
-	<script src="assets/js/jquery.scrollUp.js"></script>
-	<!-- theme js -->	
-	<script src="assets/js/theme.js"></script>
-	<script src="assets/js/blog-api.js"></script>
-	<script src="assets/js/blog-home.js"></script>
-	<!-- progresscircle js -->	
-	<script src="assets/js/progresscircle.js"></script>
+	<!-- jquery js -->
+	<script defer src="assets/js/vendor/jquery-3.6.2.min.js"></script>
+	<!-- jquery meanmenu js (menu movil) -->
+	<script defer src="assets/js/jquery.meanmenu.js"></script>
+	<!-- jquery scrollup js -->
+	<script defer src="assets/js/jquery.scrollUp.js"></script>
+	<!-- theme js -->
+	<script defer src="assets/js/theme.js"></script>
+	<!-- blog (home) -->
+	<script defer src="assets/js/blog-api.js"></script>
+	<script defer src="assets/js/blog-home.js"></script>
 
-  <!--porroges-bar-js-->
-	<script>
-		  $('.circlechart').circlechart();
-	</script>
 	<script>
 		(function () {
 			var currentPath = window.location.pathname;

@@ -83,11 +83,11 @@
       '<div class="meta-blog"><span>' +
       escapeHtml(formatDate(post.published_at)) +
       "</span></div>" +
-      '<h4 class="title"><a href="' +
+      '<h2 class="title"><a href="' +
       href +
       '">' +
       escapeHtml(post.title) +
-      "</a></h4>" +
+      "</a></h2>" +
       "</div></div></div>"
     );
   }

@@ -223,7 +223,8 @@
     right: -25%;
 }
 
-.hero-content h4 {
+.hero-content h4,
+.hero-content h2 {
     text-transform: uppercase;
     font-size: 14px;
     color: #0c5adb;
@@ -384,7 +385,8 @@
     background: #FFFAF4;
 }
 
-.feature-content h4 {
+.feature-content h4,
+.feature-content h2 {
     font-size: 18px;
     display: inline-block;
     margin: 32px 0 13px;
@@ -399,7 +401,8 @@
     margin-bottom: 70px;
 }
 
-.section-title h4 {
+.section-title h4,
+.section-title h2 {
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 500;
@@ -629,13 +632,14 @@
     background: #EEF4FF;
 }
 
-.service-content h4 {
+.service-content h4,
+.service-content h2 {
     font-size: 22px;
     margin-top: 33px;
 }
 
 .service-content p {
-    color: #617993;
+    color: #516276;
     margin: 25px 0 20px;
     transition: 0.5s;
 }
@@ -1238,7 +1242,8 @@ span.fill {
     font-size: 14px;
 }
 
-.blog-content h4.title a {
+.blog-content h4.title a,
+.blog-content h2.title a {
     font-size: 22px;
     line-height: 35px;
     font-weight: 500;
@@ -1246,7 +1251,8 @@ span.fill {
     color: #071a48;
 }
 
-.single-blog-box:hover .blog-content h4.title a{
+.single-blog-box:hover .blog-content h4.title a,
+.single-blog-box:hover .blog-content h2.title a{
     color: #0C59DB;
 }
 
@@ -1387,7 +1393,8 @@ span.fill {
     z-index: 1;
 }
 
-.footer-widget-title h4 {
+.footer-widget-title h4,
+.footer-widget-title h2 {
     color: #111111;
     font-size: 21px;
     margin-bottom: 45px;
@@ -1594,7 +1601,8 @@ span.fill {
     padding: 36px 53px 33px;
 }
 
-.contact-infor h4 {
+.contact-infor h4,
+.contact-infor h2 {
     font-size: 26px;
     margin-bottom: 39px;
 }
@@ -1617,7 +1625,8 @@ span.fill {
     margin-right: 18px;
 }
 
-.contact-content h6 {
+.contact-content h6,
+.contact-content h2 {
     font-size: 22px;
     margin-bottom: 5px;
 }

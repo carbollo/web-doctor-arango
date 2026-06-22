@@ -354,7 +354,8 @@
 }
 
 /*blog-section*/
-.blog-content h4.title a {
+.blog-content h4.title a,
+.blog-content h2.title a {
     font-size: 17px;
     line-height: 28px;
 }
@@ -635,7 +636,8 @@
     text-align: left;
     margin-bottom: 60px;
 }
-.blog-content h4.title a {
+.blog-content h4.title a,
+.blog-content h2.title a {
     font-size: 18px;
     line-height: 30px;
 }
@@ -1244,7 +1246,8 @@ table.tab-items-table tr td {
 .footer-widget-content {
     margin-top: 50px;
 }
-.footer-widget-title h4 {
+.footer-widget-title h4,
+.footer-widget-title h2 {
     margin-bottom: 25px;
 }
 
@@ -1683,7 +1686,8 @@ table.tab-items-table tr td {
     text-align: left;
     margin-bottom: 50px;
 }
-.blog-content h4.title a {
+.blog-content h4.title a,
+.blog-content h2.title a {
     font-size: 15px;
     line-height: 24px;
 }
@@ -1694,7 +1698,8 @@ table.tab-items-table tr td {
 .footer-widget-content {
     margin-top: 50px;
 }
-.footer-widget-title h4 {
+.footer-widget-title h4,
+.footer-widget-title h2 {
     margin-bottom: 20px;
 }
 .footer-single-shape {
@@ -1919,7 +1924,8 @@ table.tab-items-table tr td {
     margin-bottom: 50px;
 }
 /*contact-section*/
-.contact-infor h4 {
+.contact-infor h4,
+.contact-infor h2 {
     font-size: 20px;
 }
 

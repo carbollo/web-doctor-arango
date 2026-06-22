@@ -180,7 +180,7 @@
 ===========================*/
 
 .hero-area {
-    background: url(assets/images/hero-bg.jpg);
+    background-color: #f6f9fe;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -1108,7 +1108,7 @@ span.fill {
 <--start-subscribe-area-->
 =================================*/
 .subscribe-area {
-    background: url(assets/images/subscribe-bg.jpg);
+    background-color: #0c3a8b;
     padding: 106px 0 120px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1256,7 +1256,7 @@ span.fill {
 <--start-footer-area-->
 =================================*/
 .footer-area {
-    background: url(assets/images/footer-bg.jpg);
+    background-color: #ffffff;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -1489,7 +1489,7 @@ span.fill {
 =================================*/
 
 .bradcumb-area {
-    background: url(assets/images/breadcumb.jpg);
+    background-color: #0c3a8b;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
